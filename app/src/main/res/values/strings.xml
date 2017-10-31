@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GarbageApp</string>
+    <string name="main_appbar_desc">HARMONOGRAM ODBIORU ODPADÓW W ZIELONCE</string>
+    <string name="sector_1">SEKTOR I</string>
+    <string name="sector_1_desc">ZIELONKA PÓŁNOCNA OD TORÓW KOLEJOWYCH W KIERUNKU MAREK</string>
+    <string name="sector_2">SEKTOR II</string>
+    <string name="sector_2_desc">ZIELONKA CENTRALNA OD TORÓW W KIERUNKU UL. WYSZYŃSKIEGO ORAZ ULICE PONIATOWSKIEGO, POŁUDNIOWA ORAZ WĄSKA</string>
+    <string name="sector_3">SEKTOR III</string>
+    <string name="sector_3_desc">ZIELONKA POŁUDNIOWA OD ULICY WYSZYŃSKIEGO (WŁĄCZNIE) W KIERUNKU REMBERTOWA</string>
+</resources>
