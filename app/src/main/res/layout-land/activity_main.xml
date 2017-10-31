@@ -34,16 +34,17 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/tiny_margin"
             android:layout_weight="1"
-            android:background="@color/colorZone1Primary"
+            android:background="@color/colorSectorGreenPrimary"
             android:elevation="@dimen/card_elevation"
             android:orientation="vertical"
             android:padding="@dimen/medium_padding"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:id="@+id/sector_green">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorZone1Primary"
+                android:background="@color/colorSectorGreenPrimary"
                 android:text="@string/sector_1"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/white" />
@@ -51,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorZone1Primary"
+                android:background="@color/colorSectorGreenPrimary"
                 android:text="@string/sector_1_desc"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@android:color/white" />
@@ -62,16 +63,17 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/tiny_margin"
             android:layout_weight="1"
-            android:background="@color/colorZone2Primary"
+            android:background="@color/colorSectorBluePrimary"
             android:elevation="@dimen/card_elevation"
             android:orientation="vertical"
             android:padding="@dimen/medium_padding"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:id="@+id/sector_blue">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorZone2Primary"
+                android:background="@color/colorSectorBluePrimary"
                 android:text="@string/sector_2"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/white" />
@@ -79,7 +81,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorZone2Primary"
+                android:background="@color/colorSectorBluePrimary"
                 android:text="@string/sector_2_desc"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@android:color/white" />
@@ -90,16 +92,17 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/tiny_margin"
             android:layout_weight="1"
-            android:background="@color/colorZone3Primary"
+            android:background="@color/colorSectorYellowPrimary"
             android:elevation="@dimen/card_elevation"
             android:orientation="vertical"
             android:padding="@dimen/medium_padding"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:id="@+id/sector_yellow">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorZone3Primary"
+                android:background="@color/colorSectorYellowPrimary"
                 android:text="@string/sector_3"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/white" />
@@ -107,7 +110,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorZone3Primary"
+                android:background="@color/colorSectorYellowPrimary"
                 android:text="@string/sector_3_desc"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="@android:color/white" />

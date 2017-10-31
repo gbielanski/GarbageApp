@@ -3,11 +3,11 @@
     <color name="colorPrimary">#4caf50</color>
     <color name="colorPrimaryDark">#388E3C</color>
     <color name="colorAccent">#E040FB</color>
-    <color name="colorZone1Primary">#8bc34a</color>
+    <color name="colorSectorGreenPrimary">#8bc34a</color>
     <color name="colorZone1PrimaryDark">#689f38</color>
-    <color name="colorZone2Primary">#03a9f4</color>
+    <color name="colorSectorBluePrimary">#03a9f4</color>
     <color name="colorZone2PrimaryDark">#0288d1</color>
-    <color name="colorZone3Primary">#FFC107</color>
+    <color name="colorSectorYellowPrimary">#FFC107</color>
     <color name="colorZone3PrimaryDark">#FFA000</color>
 
     <color name="colorZone1PrimaryLight">#FFC107</color>
