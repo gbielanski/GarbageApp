@@ -14,34 +14,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //TODO Refactor this
-        findViewById(R.id.sector_green).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ActivitySectorGreen.class);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.sector_blue).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ActivitySectorBlue.class);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.sector_yellow).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ActivitySectorYellow.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public void showToast(View view) {
         Toast.makeText(this, "Przypomnienie ustawione dla STREFY III", Toast.LENGTH_LONG).show();
+    }
+
+    public void startSectorGreenDetails(View view) {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorGreen.class);
+        startActivity(intent);
+    }
+
+    public void startSectorBlueDetails(View view) {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorBlue.class);
+        startActivity(intent);
+    }
+
+    public void startSectorYellowDetails(View view) {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorYellow.class);
+        startActivity(intent);
     }
 }
