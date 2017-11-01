@@ -16,6 +16,11 @@ class SectorTermsAdapter extends RecyclerView.Adapter<SectorTermsAdapter.TermVie
     public final int VIEW_TYPE_FIRST = 1;
     public final int VIEW_TYPE_ANY = 0;
     private List<SectorTerm> mSectorTermsData = SectorTermsUtil.getFakeSectorTermsData();
+    private int mSelectorColor;
+
+    public SectorTermsAdapter(int color) {
+        this.mSelectorColor = color;
+    }
 
     @Override
     public TermViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -24,9 +29,11 @@ class SectorTermsAdapter extends RecyclerView.Adapter<SectorTermsAdapter.TermVie
 
         if (viewType == VIEW_TYPE_FIRST) {
             BigRcListElementBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.big_rc_list_element, parent, false);
+            binding.setSectorColor(mSelectorColor);
             return new TermViewHolder(binding);
         } else {
             SmallRcListElementBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.small_rc_list_element, parent, false);
+            binding.setSectorColor(mSelectorColor);
             return new TermViewHolder(binding);
         }
     }
