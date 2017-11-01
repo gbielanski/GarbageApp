@@ -13,29 +13,30 @@
         android:layout_height="@dimen/appbar_size"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="@dimen/medium_margin"
+                android:layout_toStartOf="@id/notification_switch"
+                android:text="@string/sector_2"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
             <Switch
                 android:id="@+id/notification_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="260dp"
-                android:layout_marginTop="24dp"
-                android:text="PRZYPOMINAJ"
-                android:onClick="showToast"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium_margin"
-                android:layout_marginRight="@dimen/medium_margin"
-                android:layout_marginTop="96dp"
-                android:text="SEKTOR III"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
-        </LinearLayout>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/medium_margin"
+                android:onClick="showToast"
+                android:text="@string/remind" />
+        </RelativeLayout>
 
 
     </android.support.design.widget.AppBarLayout>

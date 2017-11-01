@@ -14,6 +14,6 @@ public class ActivitySectorBlue extends AppCompatActivity {
     }
 
     public void showToast(View view) {
-        Toast.makeText(this, "Przypomnienie ustawione dla STREFY I", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Przypomnienie ustawione dla STREFY II", Toast.LENGTH_LONG).show();
     }
 }
