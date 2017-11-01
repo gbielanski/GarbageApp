@@ -6,12 +6,15 @@
         <variable
             name="sectorTerm"
             type="pl.example.android.garbageapp.SectorTerm" />
+        <variable
+            name="sectorColor"
+            type="int"/>
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="@color/colorSectorBluePrimary"
+        android:background="@{context.getColor(sectorColor)}"
         android:orientation="vertical"
         android:padding="16dp"
         android:layout_margin="@dimen/tiny_margin"
@@ -21,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/colorSectorBluePrimary"
+            android:background="@{context.getColor(sectorColor)}"
             android:gravity="bottom"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="@android:color/white"
@@ -32,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/colorSectorBluePrimary"
+            android:background="@{context.getColor(sectorColor)}"
             android:gravity="top"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="@android:color/white"

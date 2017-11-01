@@ -17,7 +17,7 @@ public class ActivitySectorBlue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivitySectorBlueBinding binding  =  DataBindingUtil.setContentView(this, R.layout.activity_sector_blue);
-        SectorTermsAdapter sectorTermsAdapter = new SectorTermsAdapter();
+        SectorTermsAdapter sectorTermsAdapter = new SectorTermsAdapter(R.color.colorSectorBluePrimary);
         LinearLayoutManager verticalLinearLayoutManager = new LinearLayoutManager(this, VERTICAL, false);
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
         binding.rcSectorTerms.setAdapter(sectorTermsAdapter);
