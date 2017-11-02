@@ -1,6 +1,7 @@
 package pl.example.android.garbageapp.data.database;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
@@ -12,6 +13,7 @@ public class SectorTerm {
     private String termType;
     private String sectorType;
 
+    @Ignore
     public SectorTerm(String term, String termType) {
         this.term = term;
         this.termType = termType;
