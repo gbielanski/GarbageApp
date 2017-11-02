@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.databinding.BigRcListElementBinding;
 import pl.example.android.garbageapp.databinding.SmallRcListElementBinding;
 

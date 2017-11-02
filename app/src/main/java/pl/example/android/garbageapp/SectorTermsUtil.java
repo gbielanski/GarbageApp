@@ -3,6 +3,8 @@ package pl.example.android.garbageapp;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.example.android.garbageapp.data.database.SectorTerm;
+
 class SectorTermsUtil {
     public static List<SectorTerm> getFakeSectorTermsData() {
         ArrayList<SectorTerm> sectorTermsList = new ArrayList<>();
