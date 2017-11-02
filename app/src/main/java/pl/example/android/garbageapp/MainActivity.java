@@ -2,6 +2,7 @@ package pl.example.android.garbageapp;
 
 import android.content.Intent;
 import android.os.TokenWatcher;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
