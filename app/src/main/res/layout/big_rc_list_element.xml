@@ -40,6 +40,6 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="@android:color/white"
             tools:text="zmieszane"
-            android:text="@{sectorTerm.getTermType()}"/>
+            android:text="@{ sectorTerm.getTermType()}"/>
     </LinearLayout>
 </layout>
