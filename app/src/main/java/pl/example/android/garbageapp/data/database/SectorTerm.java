@@ -10,23 +10,30 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import static pl.example.android.garbageapp.data.database.SectorTerm.TermType.*;
+
 @Entity(tableName = "sector_terms", indices = {@Index(value = {"sectorType"})})
 public class SectorTerm {
-    private static final  int greenSectorType = 1;
-    private static final  int blueSectorType = 2;
-    private static final  int yellowSectorType = 3;
 
-    public static final int termTypeMixed = 1;
-    public static final int termTypeSegregated = 2;
+    public enum SectorType{
+        GREEN,
+        BLUE,
+        YELLOW;
+    }
+
+    public enum TermType{
+        MIXED,
+        SEGREGATED
+    }
 
     @PrimaryKey(autoGenerate = true)
     private int id;
     private Date term;
-    private int termType;
-    private int sectorType;
+    private TermType termType;
+    private SectorType sectorType;
 
     @Ignore
-    public SectorTerm(String term, int termType) {
+    public SectorTerm(String term, TermType termType) {
         String dateFormat = "yyyy.MM.dd";
         Date dateTerm = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
@@ -38,11 +45,11 @@ public class SectorTerm {
 
         this.term = dateTerm;
         this.termType = termType;
-        sectorType = greenSectorType;
+        sectorType = SectorType.GREEN;
     }
 
     // Constructor used by Room
-    public SectorTerm(int id, Date term, int termType, int sectorType) {
+    public SectorTerm(int id, Date term, TermType termType, SectorType sectorType) {
         this.id = id;
         this.term = term;
         this.termType = termType;
@@ -55,12 +62,12 @@ public class SectorTerm {
         return simpleDateFormat.format(term);
     }
 
-    //TODO extract outside
+    //TODO extract outside and use getString from resources
     public String getTermType() {
         switch (termType) {
-            case termTypeMixed:
+            case MIXED:
                 return "zmieszane";
-            case termTypeSegregated:
+            case SEGREGATED:
                 return "segregowane";
             default:
                 return "UNKNOWN";
@@ -71,17 +78,7 @@ public class SectorTerm {
         return id;
     }
 
-    //TODO extract outside
-    public String getSectorType() {
-        switch (sectorType) {
-            case greenSectorType:
-                return "GREEN";
-            case blueSectorType:
-                return "BLUE";
-            case yellowSectorType:
-                return "YELLOW";
-            default:
-                return "UNKNOWN";
-        }
+    public SectorType getSectorType() {
+        return sectorType;
     }
 }
