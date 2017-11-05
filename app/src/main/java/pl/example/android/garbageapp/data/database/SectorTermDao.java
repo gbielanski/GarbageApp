@@ -12,12 +12,12 @@ import java.util.List;
 @Dao
 public interface SectorTermDao {
 
-    @Query("SELECT * FROM sector_terms WHERE date >= :date AND sectorType == :sectorType")
-    LiveData<List<SectorTerm>> getFutureSectorTerms(Date date, int sectorType);
+    @Query("SELECT * FROM sector_terms WHERE term >= :term AND sectorType == :sectorType")
+    LiveData<List<SectorTerm>> getFutureSectorTerms(Date term, int sectorType);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void bulkInsert(SectorTerm... sectorTerm);
 
-    @Query("DELETE FROM sector_terms WHERE date < :date")
-    void deleteOldSectorTerms(Date date);
+    @Query("DELETE FROM sector_terms WHERE term < :term")
+    void deleteOldSectorTerms(Date term);
 }
