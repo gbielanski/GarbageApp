@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.example.android.garbageapp.data.database.SectorTerm;
-import pl.example.android.garbageapp.data.database.SectorTerm.TermType;
 
-import static pl.example.android.garbageapp.data.database.SectorTerm.TermType.*;
+import static pl.example.android.garbageapp.data.database.TermType.MIXED;
+import static pl.example.android.garbageapp.data.database.TermType.SEGREGATED;
 
 class SectorTermsUtil {
     public static List<SectorTerm> getFakeSectorTermsData() {
