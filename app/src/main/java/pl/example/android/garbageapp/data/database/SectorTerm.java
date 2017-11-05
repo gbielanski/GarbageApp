@@ -8,26 +8,17 @@ import android.arch.persistence.room.PrimaryKey;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
-import static pl.example.android.garbageapp.data.database.SectorTerm.TermType.*;
 
 @Entity(tableName = "sector_terms", indices = {@Index(value = {"sectorType"})})
 public class SectorTerm {
 
-    public enum SectorType{
-        GREEN,
-        BLUE,
-        YELLOW;
-    }
-
-    public enum TermType{
-        MIXED,
-        SEGREGATED
-    }
-
     @PrimaryKey(autoGenerate = true)
     private int id;
+
     private Date term;
     private TermType termType;
     private SectorType sectorType;
@@ -56,14 +47,14 @@ public class SectorTerm {
         this.sectorType = sectorType;
     }
 
-    public String getTerm() {
+    public String getTermString() {
         String dateFormat = "EEEE, d MMMM YYYY";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, new Locale("pl", "PL"));
         return simpleDateFormat.format(term);
     }
 
     //TODO extract outside and use getString from resources
-    public String getTermType() {
+    public String getTermTypeString() {
         switch (termType) {
             case MIXED:
                 return "zmieszane";
@@ -80,5 +71,13 @@ public class SectorTerm {
 
     public SectorType getSectorType() {
         return sectorType;
+    }
+
+    public Date getTerm() {
+        return term;
+    }
+
+    public TermType getTermType() {
+        return termType;
     }
 }

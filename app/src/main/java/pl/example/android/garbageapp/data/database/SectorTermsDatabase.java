@@ -8,7 +8,7 @@ import android.content.Context;
 import android.util.Log;
 
 @Database(entities = {SectorTerm.class}, version = 1)
-@TypeConverters(DateConverter.class)
+@TypeConverters(Converters.class)
 public abstract class SectorTermsDatabase extends RoomDatabase {
 
     private static final String LOG_TAG = SectorTermsDatabase.class.getSimpleName();
