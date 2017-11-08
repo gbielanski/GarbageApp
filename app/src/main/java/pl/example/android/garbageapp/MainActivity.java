@@ -1,11 +1,13 @@
 package pl.example.android.garbageapp;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.TokenWatcher;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -21,19 +23,43 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Przypomnienie ustawione dla STREFY III", Toast.LENGTH_LONG).show();
     }
 
-    public void startSectorGreenDetails(View view) {
+    public void onClickSectorGreenDetails(View view) {
+        animateCircularReveal(view);
+        startSectorGreenDetails();
+    }
+
+    public void onClickSectorBlueDetails(View view) {
+        animateCircularReveal(view);
+        startSectorBlueDetails();
+    }
+
+    public void onClickSectorYellowDetails(View view) {
+        animateCircularReveal(view);
+        startSectorYellowDetails();
+    }
+
+    private void animateCircularReveal(View view) {
+        int finalRadius = (int) Math.hypot(view.getWidth() / 2, view.getHeight() / 2);
+        Animator anim = ViewAnimationUtils.createCircularReveal(view,
+                (int) view.getWidth() / 2,
+                (int) view.getHeight() / 2,
+                0, finalRadius);
+        anim.start();
+    }
+
+    private void startSectorGreenDetails() {
         Intent intent = new Intent(MainActivity.this, ActivitySectorGreen.class);
         Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
         startActivity(intent, bundle);
     }
 
-    public void startSectorBlueDetails(View view) {
+    private void startSectorBlueDetails() {
         Intent intent = new Intent(MainActivity.this, ActivitySectorBlue.class);
         Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
         startActivity(intent, bundle);
     }
 
-    public void startSectorYellowDetails(View view) {
+    private void startSectorYellowDetails() {
         Intent intent = new Intent(MainActivity.this, ActivitySectorYellow.class);
         Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
         startActivity(intent, bundle);
