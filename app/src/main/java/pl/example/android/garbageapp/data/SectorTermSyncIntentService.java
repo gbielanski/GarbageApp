@@ -15,8 +15,8 @@ public class SectorTermSyncIntentService extends IntentService {
 
     private static final String LOG_TAG = SectorTermSyncIntentService.class.getSimpleName();
 
-    public SectorTermSyncIntentService(String name) {
-        super(name);
+    public SectorTermSyncIntentService() {
+        super("SectorTermSyncIntentService");
     }
 
     @Override

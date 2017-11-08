@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.example.android.garbageapp.data.SectorTermSyncIntentService;
+import pl.example.android.garbageapp.data.network.model.Sector;
 import pl.example.android.garbageapp.utils.AppExecutors;
 
 /**
@@ -32,15 +33,13 @@ public class SectorTermsNetworkDataSource {
 
     // Database & Firebase
     private DatabaseReference mFirebaseDatabaseReference;
-    private MutableLiveData<List<Blue>> mDownloadedBlueSectors;
-    private MutableLiveData<List<Green>> mDownloadedGreenSectors;
-    private MutableLiveData<List<Yellow>> mDownloadedYellowSectors;
+    private MutableLiveData<List<Sector>> mDownloadedSectors;
     private final Context mContext;
 
     private SectorTermsNetworkDataSource(Context context, AppExecutors executors) {
         mContext = context;
         mExecutors = executors;
-        mDownloadedBlueSectors = new MutableLiveData<>();
+        mDownloadedSectors = new MutableLiveData<>();
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -64,76 +63,36 @@ public class SectorTermsNetworkDataSource {
     public void fetchSectorTerms() {
         Log.d(LOG_TAG, "Fetch sector terms started");
         DatabaseReference blueRef = mFirebaseDatabaseReference.child("blue");
-
-        blueRef.addValueEventListener(new ValueEventListener() {
-            public final String LOG_TAG = ValueEventListener.class.getSimpleName();
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Blue> blueModel = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Blue blue = snapshot.getValue(Blue.class);
-                    blueModel.add(blue);
-                }
-                mDownloadedBlueSectors.postValue(blueModel);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Log.w(LOG_TAG, "Failed to read value from Blue.", error.toException());
-            }
-        });
+        blueRef.addValueEventListener(new SectorValueEventListener());
 
         DatabaseReference greenRef = mFirebaseDatabaseReference.child("green");
-        greenRef.addValueEventListener(new ValueEventListener() {
-            public final String LOG_TAG = ValueEventListener.class.getSimpleName();
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Green> greenModel = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Green green = snapshot.getValue(Green.class);
-                    greenModel.add(green);
-                }
-                mDownloadedGreenSectors.postValue(greenModel);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Log.w(LOG_TAG, "Failed to read value from Green.", error.toException());
-            }
-        });
+        greenRef.addValueEventListener(new SectorValueEventListener());
 
         DatabaseReference yellowRef = mFirebaseDatabaseReference.child("yellow");
-        yellowRef.addValueEventListener(new ValueEventListener() {
-            public final String LOG_TAG = ValueEventListener.class.getSimpleName();
+        yellowRef.addValueEventListener(new SectorValueEventListener());
+    }
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Yellow> yellowModel = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Yellow yellow = snapshot.getValue(Yellow.class);
-                    yellowModel.add(yellow);
-                }
-                mDownloadedYellowSectors.postValue(yellowModel);
+    public LiveData<List<Sector>> getDownloadedSectors() {
+        return mDownloadedSectors;
+    }
+
+    private class SectorValueEventListener implements ValueEventListener {
+
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            List<Sector> sectorModel = new ArrayList<>();
+            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                Sector sector = snapshot.getValue(Sector.class);
+                sectorModel.add(sector);
             }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Log.w(LOG_TAG, "Failed to read value from Yellow.", error.toException());
+            synchronized (this) {
+                mDownloadedSectors.postValue(sectorModel);
             }
-        });
-    }
+        }
 
-    public LiveData<List<Blue>> getDownloadedBlueSectors() {
-        return mDownloadedBlueSectors;
-    }
-
-    public LiveData<List<Green>> getDownloadedGreenSectors() {
-        return mDownloadedGreenSectors;
-    }
-
-    public LiveData<List<Yellow>> getDownloadedYellowSectors() {
-        return mDownloadedYellowSectors;
+        @Override
+        public void onCancelled(DatabaseError error) {
+            Log.w(LOG_TAG, "Failed to read value from sector.", error.toException());
+        }
     }
 }
