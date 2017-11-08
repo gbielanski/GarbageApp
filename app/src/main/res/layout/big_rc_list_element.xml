@@ -29,7 +29,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="@android:color/white"
             tools:text="piątek, 3 listopada 2017"
-            android:text="@{sectorTerm.getTerm()}"/>
+            android:text="@{sectorTerm.getTermString()}"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,6 +40,6 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="@android:color/white"
             tools:text="zmieszane"
-            android:text="@{sectorTerm.getTermType()}"/>
+            android:text="@{ sectorTerm.getTermTypeString()}"/>
     </LinearLayout>
 </layout>
