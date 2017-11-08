@@ -40,7 +40,7 @@
             android:orientation="vertical"
             android:padding="@dimen/medium_padding"
             android:gravity="center_vertical"
-            android:onClick="onClickSectorGreenDetails">
+            android:onClick="onClickSectorGreenDetails"
             android:id="@+id/sector_green">
 
             <TextView
@@ -70,7 +70,7 @@
             android:orientation="vertical"
             android:padding="@dimen/medium_padding"
             android:gravity="center_vertical"
-            android:onClick="onClickSectorBlueDetails">
+            android:onClick="onClickSectorBlueDetails"
             android:id="@+id/sector_blue">
             <TextView
                 android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
             android:orientation="vertical"
             android:padding="@dimen/medium_padding"
             android:gravity="center_vertical"
-            android:onClick="onClickSectorYellowDetails">
+            android:onClick="onClickSectorYellowDetails"
             android:id="@+id/sector_yellow">
           
             <TextView
