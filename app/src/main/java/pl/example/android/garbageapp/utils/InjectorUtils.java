@@ -2,6 +2,8 @@ package pl.example.android.garbageapp.utils;
 
 import android.content.Context;
 
+import pl.example.android.garbageapp.data.SectorTermRepository;
+import pl.example.android.garbageapp.data.database.SectorTermsDatabase;
 import pl.example.android.garbageapp.data.network.SectorTermsNetworkDataSource;
 
 /**
@@ -9,7 +11,19 @@ import pl.example.android.garbageapp.data.network.SectorTermsNetworkDataSource;
  */
 
 public class InjectorUtils {
-    public static SectorTermsNetworkDataSource provideNetworkDataSource(Context applicationContext) {
-        throw new UnsupportedOperationException("Not implemented yet!");
+
+    public static SectorTermRepository provideRepository(Context context) {
+        SectorTermsDatabase database = SectorTermsDatabase.getInstance(context.getApplicationContext());
+        AppExecutors executors = AppExecutors.getInstance();
+        SectorTermsNetworkDataSource networkDataSource =
+                SectorTermsNetworkDataSource.getInstance(context.getApplicationContext(), executors);
+        return SectorTermRepository.getInstance(database.sectorTermDao(), networkDataSource, executors);
     }
+
+    public static SectorTermsNetworkDataSource provideNetworkDataSource(Context context) {
+        provideRepository(context.getApplicationContext());
+        AppExecutors executors = AppExecutors.getInstance();
+        return SectorTermsNetworkDataSource.getInstance(context.getApplicationContext(), executors);
+    }
+
 }

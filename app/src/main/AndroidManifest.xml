@@ -19,6 +19,13 @@
         <activity android:name=".ActivitySectorGreen" />
         <activity android:name=".ActivitySectorBlue" />
         <activity android:name=".ActivitySectorYellow"/>
+
+        <!--This is required for immediate syncs -->
+        <service
+            android:name=".data.SectorTermSyncIntentService"
+            android:exported="false" />
     </application>
+
+
 
 </manifest>

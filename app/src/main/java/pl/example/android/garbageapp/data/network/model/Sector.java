@@ -1,17 +1,17 @@
-package pl.example.android.garbageapp.data.network;
+package pl.example.android.garbageapp.data.network.model;
 
 /**
- * Created by miltomasz on 07/11/17.
+ * Created by miltomasz on 08/11/17.
  */
 
-public class Green {
+public class Sector {
     private String id;
     private String term;
     private String type;
 
-    public Green() {}
+    public Sector() {}
 
-    public Green(String term, String type) {
+    public Sector(String term, String type) {
         this.term = term;
         this.type = type;
     }
