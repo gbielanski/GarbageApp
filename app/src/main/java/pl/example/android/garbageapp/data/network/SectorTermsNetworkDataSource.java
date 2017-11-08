@@ -55,7 +55,7 @@ public class SectorTermsNetworkDataSource {
         return sInstance;
     }
 
-    public void startFetchWeatherService() {
+    public void startSectorTermsSyncService() {
         Intent intentToFetch = new Intent(mContext, SectorTermSyncIntentService.class);
         mContext.startService(intentToFetch);
         Log.d(LOG_TAG, "Service created");
