@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
+    android:id="@+id/main_content_sector_green"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -40,6 +40,7 @@
             android:padding="@dimen/medium_padding"
             android:gravity="center_vertical"
             android:onClick="onClickSectorGreenDetails">
+            android:id="@+id/sector_green">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,6 +70,7 @@
             android:padding="@dimen/medium_padding"
             android:gravity="center_vertical"
             android:onClick="onClickSectorBlueDetails">
+            android:id="@+id/sector_blue">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,6 +100,7 @@
             android:padding="@dimen/medium_padding"
             android:gravity="center_vertical"
             android:onClick="onClickSectorYellowDetails">
+            android:id="@+id/sector_yellow">
 
             <TextView
                 android:layout_width="wrap_content"
