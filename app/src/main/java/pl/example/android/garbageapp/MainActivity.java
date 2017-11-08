@@ -23,16 +23,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void startSectorGreenDetails(View view) {
         Intent intent = new Intent(MainActivity.this, ActivitySectorGreen.class);
-        startActivity(intent);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 
     public void startSectorBlueDetails(View view) {
         Intent intent = new Intent(MainActivity.this, ActivitySectorBlue.class);
-        startActivity(intent);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 
     public void startSectorYellowDetails(View view) {
         Intent intent = new Intent(MainActivity.this, ActivitySectorYellow.class);
-        startActivity(intent);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 }
