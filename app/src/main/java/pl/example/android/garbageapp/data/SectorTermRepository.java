@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import pl.example.android.garbageapp.data.database.SectorTerm;
@@ -12,6 +13,7 @@ import pl.example.android.garbageapp.data.database.TermType;
 import pl.example.android.garbageapp.data.network.SectorTermsNetworkDataSource;
 import pl.example.android.garbageapp.data.network.model.Sector;
 import pl.example.android.garbageapp.utils.AppExecutors;
+import pl.example.android.garbageapp.utils.SectorTermsDateUtils;
 
 /**
  * Created by miltomasz on 03/11/17.
@@ -61,11 +63,28 @@ public class SectorTermRepository {
     }
 
     private synchronized void initializeData() {
-        mExecutors.diskIO().execute(() -> startFetchSectorTerms());
+        if (mInitialized) {
+            return;
+        }
+        mInitialized = true;
+
+        mSectorTermsNetworkDataSource.scheduleRecurringFetchSectorTermsSync();
+
+        mExecutors.diskIO().execute(() -> {
+            if (isFetchNeeded()) {
+                startFetchSectorTerms();
+            }
+        });
     }
 
     private void startFetchSectorTerms() {
         mSectorTermsNetworkDataSource.startSectorTermsSyncService();
+    }
+
+    private boolean isFetchNeeded() {
+        Date today = SectorTermsDateUtils.getNormalizedUtcDateForToday();
+        int futureWeather = mSectorTermDao.countAllFutureSectorTerms(today);
+        return futureWeather < SectorTermsNetworkDataSource.NUM_DAYS;
     }
 
     private void deleteOldData() {

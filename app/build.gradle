@@ -51,6 +51,7 @@ dependencies {
 
     // firebase
     compile 'com.google.firebase:firebase-database:11.4.2'
+    compile 'com.firebase:firebase-jobdispatcher:0.7.0'
 
     compile "android.arch.lifecycle:runtime:1.0.3"
     compile "android.arch.lifecycle:extensions:1.0.0-rc1"
