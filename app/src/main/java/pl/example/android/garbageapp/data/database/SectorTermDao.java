@@ -20,4 +20,10 @@ public interface SectorTermDao {
 
     @Query("DELETE FROM sector_terms WHERE term < :term")
     void deleteOldSectorTerms(Date term);
+
+    @Query("SELECT * FROM sector_terms")
+    LiveData<List<SectorTerm>> getAllSectorTerms();
+
+    @Query("DELETE FROM sector_terms")
+    void deleteAll();
 }
