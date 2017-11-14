@@ -31,5 +31,5 @@ public abstract class SectorTermsDatabase extends RoomDatabase {
     }
 
     // The associated DAOs for the database
-    public abstract SectorTermDao weatherDao();
+    public abstract SectorTermDao sectorTermDao();
 }
