@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import pl.example.android.garbageapp.R;
@@ -46,6 +47,6 @@ public class ActivitySectorBlue extends BaseActivitySector {
     }
 
     public void setNotification(View view) {
-        super.setNotification();
+        super.setNotification(view);
     }
 }

@@ -9,5 +9,6 @@
     <string name="sector_3_desc">ZIELONKA POŁUDNIOWA OD ULICY WYSZYŃSKIEGO (WŁĄCZNIE) W KIERUNKU REMBERTOWA</string>
     <string name="remind">PRZYPOMINAJ</string>
     <string name="setup_notification">Przypomnienie ustawione dla <xliff:g id="sector" example="SEKTOR I ZIELONY">%s</xliff:g></string>
+    <string name="remove_notification">Przypomnienie dla <xliff:g id="sector" example="SEKTOR I ZIELONY">%s</xliff:g> usunięte</string>
 
 </resources>

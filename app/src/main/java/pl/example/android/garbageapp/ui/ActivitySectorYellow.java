@@ -45,6 +45,6 @@ public class ActivitySectorYellow extends BaseActivitySector {
     }
 
     public void setNotification(View view) {
-        super.setNotification();
+        super.setNotification(view);
     }
 }
