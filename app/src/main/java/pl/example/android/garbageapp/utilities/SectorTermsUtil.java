@@ -1,4 +1,4 @@
-package pl.example.android.garbageapp;
+package pl.example.android.garbageapp.utilities;
 
 import android.content.Context;
 
@@ -10,7 +10,7 @@ import pl.example.android.garbageapp.data.database.SectorTerm;
 import static pl.example.android.garbageapp.data.database.TermType.MIXED;
 import static pl.example.android.garbageapp.data.database.TermType.SEGREGATED;
 
-class SectorTermsUtil {
+public class SectorTermsUtil {
     public static List<SectorTerm> getFakeSectorTermsData() {
         ArrayList<SectorTerm> sectorTermsList = new ArrayList<>();
         sectorTermsList.add(new SectorTerm("2017.11.03", MIXED));
