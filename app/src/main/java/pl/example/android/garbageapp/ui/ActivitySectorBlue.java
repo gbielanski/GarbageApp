@@ -39,10 +39,13 @@ public class ActivitySectorBlue extends BaseActivitySector {
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
         binding.rcSectorTerms.setAdapter(sectorTermsAdapter);
 
+        if(checkIfSectorMarkedAsNotification())
+            binding.notificationSwitch.setChecked(true);
+
         //TODO mViewModel observe and bind data to UI
     }
 
-    public void showToast(View view) {
-        Toast.makeText(this, "Przypomnienie ustawione dla STREFY II", Toast.LENGTH_LONG).show();
+    public void setNotification(View view) {
+        super.setNotification();
     }
 }

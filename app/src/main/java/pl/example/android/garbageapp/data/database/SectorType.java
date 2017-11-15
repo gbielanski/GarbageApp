@@ -5,9 +5,30 @@ import java.util.Map;
 
 
 public enum SectorType {
-    GREEN(1),
-    BLUE(2),
-    YELLOW(3);
+    UNSET(0) {
+        @Override
+        public String toString() {
+            return "SEKTOR NIEZDEFINIOWANY";
+        }
+    },
+    GREEN(1) {
+        @Override
+        public String toString() {
+            return "SEKTOR I ZIELONY";
+        }
+    },
+    BLUE(2) {
+        @Override
+        public String toString() {
+            return "SEKTOR II NIEBIESKI";
+        }
+    },
+    YELLOW(3) {
+        @Override
+        public String toString() {
+            return "SEKTOR III ŻÓŁTY";
+        }
+    };
 
     private int sectorTypeValue;
 
@@ -30,5 +51,7 @@ public enum SectorType {
     public static int toInt(SectorType sectorTypeEnum) {
         return sectorTypeEnum.sectorTypeValue;
     }
+
+    public abstract String toString();
 }
 

@@ -1,5 +1,6 @@
 package pl.example.android.garbageapp.ui;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.FragmentActivity;
@@ -37,10 +38,13 @@ public class ActivitySectorGreen extends BaseActivitySector {
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
         binding.rcSectorTerms.setAdapter(sectorTermsAdapter);
 
+        if(checkIfSectorMarkedAsNotification())
+            binding.notificationSwitch.setChecked(true);
+
         //TODO mViewModel observe and bind data to UI
     }
 
-    public void showToast(View view) {
-        Toast.makeText(this, "Przypomnienie ustawione dla STREFY I", Toast.LENGTH_LONG).show();
+    public void setNotification(View view) {
+        super.setNotification();
     }
 }
