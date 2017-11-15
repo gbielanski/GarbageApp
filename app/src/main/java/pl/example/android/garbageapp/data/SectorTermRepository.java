@@ -60,6 +60,26 @@ public class SectorTermRepository {
         return sInstance;
     }
 
+//    public void scheduleRecurringFetchSectorTermsSync() {
+//        Driver driver = new GooglePlayDriver(mContext);
+//               FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
+//
+//                       Job syncSunshineJob = dispatcher.newJobBuilder()
+//                                .setService(SectorTermFirebaseJobService.class)
+//                                .setTag(SECTOR_TERMS__SYNC_TAG)
+//                                .setConstraints(Constraint.ON_ANY_NETWORK)
+//                                .setLifetime(Lifetime.FOREVER)
+//                                .setRecurring(true)
+//                                .setTrigger(Trigger.executionWindow(
+//                                        SYNC_INTERVAL_SECONDS,
+//                                        SYNC_INTERVAL_SECONDS + SYNC_FLEXTIME_SECONDS))
+//                                .setReplaceCurrent(true)
+//                                .build();
+//                // Schedule the Job with the dispatcher
+//                        dispatcher.schedule(syncSunshineJob);
+//                Log.d(LOG_TAG, "Sync Sector terms Job scheduled");
+//    }
+
     private synchronized void initializeData() {
         mExecutors.diskIO().execute(() -> startFetchSectorTerms());
     }
