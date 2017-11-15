@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import pl.example.android.garbageapp.R;
@@ -44,11 +45,15 @@ public abstract class BaseActivitySector extends AppCompatActivity {
         return notificationSectorType == SectorType.toInt(sectorType());
     }
 
-    protected void setNotification(){
+    protected void setNotification(View view){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(currentSector());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(NOTIFICATION_SECTOR_TYPE, SectorType.toInt(sectorType()));
         editor.apply();
-        Toast.makeText(currentSector(), getString(R.string.setup_notification, sectorType().toString()), Toast.LENGTH_LONG).show();
+        if(((Switch) view).isChecked())
+            Toast.makeText(currentSector(), getString(R.string.setup_notification, sectorType().toString()), Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(currentSector(), getString(R.string.remove_notification, sectorType().toString()), Toast.LENGTH_LONG).show();
+
     }
 }
