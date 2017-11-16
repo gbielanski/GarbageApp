@@ -34,7 +34,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/medium_margin"
-                    android:onClick="setNotification"
                     android:text="@string/remind" />
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>

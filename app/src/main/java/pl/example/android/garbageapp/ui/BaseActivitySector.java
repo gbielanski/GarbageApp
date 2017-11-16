@@ -36,7 +36,7 @@ public abstract class BaseActivitySector extends AppCompatActivity {
         mViewModel = ViewModelProviders.of(currentSector(), factory).get(DetailActivityViewModel.class);
     }
 
-    protected boolean checkIfSectorMarkedAsNotification(){
+    protected boolean isMarkedForNotification(){
         int notificationSectorType = SectorType.toInt(SectorType.UNSET);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(currentSector());
         if(sharedPreferences.contains(NOTIFICATION_SECTOR_TYPE))
@@ -45,7 +45,7 @@ public abstract class BaseActivitySector extends AppCompatActivity {
         return notificationSectorType == SectorType.toInt(sectorType());
     }
 
-    protected void setNotification(View view){
+    protected void markForNotification(View view){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(currentSector());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(NOTIFICATION_SECTOR_TYPE, SectorType.toInt(sectorType()));
