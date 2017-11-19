@@ -33,8 +33,6 @@ public class SectorTermsNetworkDataSource {
 
     private static final String LOG_TAG = SectorTermsNetworkDataSource.class.getSimpleName();
 
-    public static final int NUM_DAYS = 14;
-
     // For Singleton instantiation
     private static final Object LOCK = new Object();
     private static final String SECTOR_TERMS__SYNC_TAG = "sector-terms-sync";
@@ -74,7 +72,7 @@ public class SectorTermsNetworkDataSource {
         Driver driver = new GooglePlayDriver(mContext);
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
 
-        Job syncSunshineJob = dispatcher.newJobBuilder()
+        Job syncSectorTermsJob = dispatcher.newJobBuilder()
                 .setService(SectorTermFirebaseJobService.class)
                 .setTag(SECTOR_TERMS__SYNC_TAG)
                 .setConstraints(Constraint.ON_ANY_NETWORK)
@@ -86,7 +84,7 @@ public class SectorTermsNetworkDataSource {
                 .setReplaceCurrent(true)
                 .build();
         // Schedule the Job with the dispatcher
-        dispatcher.schedule(syncSunshineJob);
+        dispatcher.schedule(syncSectorTermsJob);
         Log.d(LOG_TAG, "Sync Sector terms Job scheduled");
     }
 
