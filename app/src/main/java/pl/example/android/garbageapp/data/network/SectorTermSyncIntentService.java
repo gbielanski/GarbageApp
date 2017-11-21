@@ -1,11 +1,10 @@
-package pl.example.android.garbageapp.data;
+package pl.example.android.garbageapp.data.network;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import pl.example.android.garbageapp.data.network.SectorTermsNetworkDataSource;
 import pl.example.android.garbageapp.utils.InjectorUtils;
 
 /**

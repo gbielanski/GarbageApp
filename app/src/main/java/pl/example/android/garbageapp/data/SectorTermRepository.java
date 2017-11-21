@@ -61,6 +61,15 @@ public class SectorTermRepository {
     }
 
     private synchronized void initializeData() {
+        if (mInitialized) {
+            return;
+        }
+        mInitialized = true;
+
+        // setup job scheduler for fetching sector terms every 12 hrs
+        mSectorTermsNetworkDataSource.scheduleRecurringFetchSectorTermsSync();
+
+        // fetch sector terms now
         mExecutors.diskIO().execute(() -> startFetchSectorTerms());
     }
 
