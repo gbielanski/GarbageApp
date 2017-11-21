@@ -6,6 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.firebase.jobdispatcher.Constraint;
+import com.firebase.jobdispatcher.Driver;
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
+import com.firebase.jobdispatcher.Lifetime;
+import com.firebase.jobdispatcher.Trigger;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,8 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import pl.example.android.garbageapp.data.SectorTermSyncIntentService;
 import pl.example.android.garbageapp.data.network.model.Sector;
 import pl.example.android.garbageapp.utils.AppExecutors;
 
@@ -28,6 +35,13 @@ public class SectorTermsNetworkDataSource {
 
     // For Singleton instantiation
     private static final Object LOCK = new Object();
+    private static final String SECTOR_TERMS__SYNC_TAG = "sector-terms-sync";
+
+    // sync job service time units
+    private static final int SYNC_INTERVAL_HOURS = 12;
+    private static final int SYNC_INTERVAL_SECONDS = (int) TimeUnit.HOURS.toSeconds(SYNC_INTERVAL_HOURS);
+    private static final int SYNC_FLEXTIME_SECONDS = SYNC_INTERVAL_SECONDS / 12;
+
     private static SectorTermsNetworkDataSource sInstance;
     private final AppExecutors mExecutors;
 
@@ -52,6 +66,26 @@ public class SectorTermsNetworkDataSource {
             }
         }
         return sInstance;
+    }
+
+    public void scheduleRecurringFetchSectorTermsSync() {
+        Driver driver = new GooglePlayDriver(mContext);
+        FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
+
+        Job syncSectorTermsJob = dispatcher.newJobBuilder()
+                .setService(SectorTermFirebaseJobService.class)
+                .setTag(SECTOR_TERMS__SYNC_TAG)
+                .setConstraints(Constraint.ON_ANY_NETWORK)
+                .setLifetime(Lifetime.FOREVER)
+                .setRecurring(true)
+                .setTrigger(Trigger.executionWindow(
+                        SYNC_INTERVAL_SECONDS,
+                        SYNC_INTERVAL_SECONDS + SYNC_FLEXTIME_SECONDS))
+                .setReplaceCurrent(true)
+                .build();
+        // Schedule the Job with the dispatcher
+        dispatcher.schedule(syncSectorTermsJob);
+        Log.d(LOG_TAG, "Sync Sector terms Job scheduled");
     }
 
     public void startSectorTermsSyncService() {
