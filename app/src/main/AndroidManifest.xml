@@ -24,6 +24,10 @@
         <service
             android:name=".data.network.SectorTermSyncIntentService"
             android:exported="false" />
+
+        <service
+            android:name=".data.network.SectorTermFirebaseJobService"
+            android:exported="false" />
     </application>
 
 
