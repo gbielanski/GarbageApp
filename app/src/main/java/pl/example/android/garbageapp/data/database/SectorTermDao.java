@@ -12,8 +12,8 @@ import java.util.List;
 @Dao
 public interface SectorTermDao {
 
-    @Query("SELECT * FROM sector_terms WHERE term >= :term AND sectorType == :sectorType")
-    LiveData<List<SectorTerm>> getCurrentSectorTerms(Date term, SectorType sectorType);
+    @Query("SELECT * FROM sector_terms WHERE term >= :t AND sectorType == :sectorType")
+    LiveData<List<SectorTerm>> getCurrentSectorTerms(Date t, SectorType sectorType);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void bulkInsert(SectorTerm... sectorTerm);
