@@ -23,7 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import pl.example.android.garbageapp.data.network.model.Sector;
+import pl.example.android.garbageapp.data.database.SectorTerm;
+import pl.example.android.garbageapp.data.database.SectorType;
+import pl.example.android.garbageapp.data.database.TermType;
+import pl.example.android.garbageapp.data.network.model.SectorData;
 import pl.example.android.garbageapp.utils.AppExecutors;
 
 /**
@@ -47,7 +50,7 @@ public class SectorTermsNetworkDataSource {
 
     // Database & Firebase
     private DatabaseReference mFirebaseDatabaseReference;
-    private MutableLiveData<List<Sector>> mDownloadedSectors;
+    private MutableLiveData<List<SectorTerm>> mDownloadedSectors;
     private final Context mContext;
 
     private SectorTermsNetworkDataSource(Context context, AppExecutors executors) {
@@ -86,7 +89,7 @@ public class SectorTermsNetworkDataSource {
                 .build();
         // Schedule the Job with the dispatcher
         dispatcher.schedule(syncSectorTermsJob);
-        Log.d(LOG_TAG, "Sync Sector terms Job scheduled");
+        Log.d(LOG_TAG, "Sync SectorData terms Job scheduled");
     }
 
     public void startSectorTermsSyncService() {
@@ -98,27 +101,34 @@ public class SectorTermsNetworkDataSource {
     public void fetchSectorTerms() {
         Log.d(LOG_TAG, "Fetch sector terms started");
         DatabaseReference blueRef = mFirebaseDatabaseReference.child("blue");
-        blueRef.addValueEventListener(new SectorValueEventListener());
+        blueRef.addValueEventListener(new SectorValueEventListener(SectorType.BLUE));
 
         DatabaseReference greenRef = mFirebaseDatabaseReference.child("green");
-        greenRef.addValueEventListener(new SectorValueEventListener());
+        greenRef.addValueEventListener(new SectorValueEventListener(SectorType.GREEN));
 
         DatabaseReference yellowRef = mFirebaseDatabaseReference.child("yellow");
-        yellowRef.addValueEventListener(new SectorValueEventListener());
+        yellowRef.addValueEventListener(new SectorValueEventListener(SectorType.YELLOW));
     }
 
-    public LiveData<List<Sector>> getDownloadedSectors() {
+    public LiveData<List<SectorTerm>> getDownloadedSectors() {
         return mDownloadedSectors;
     }
 
     private class SectorValueEventListener implements ValueEventListener {
 
+        private SectorType sectorType;
+
+        SectorValueEventListener(SectorType sectorType){
+            super();
+            this.sectorType = sectorType;
+        }
+
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            List<Sector> sectorModel = new ArrayList<>();
+            List<SectorTerm> sectorModel = new ArrayList<>();
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                Sector sector = snapshot.getValue(Sector.class);
-                sectorModel.add(sector);
+                SectorData sectorData = snapshot.getValue(SectorData.class);
+                sectorModel.add(new SectorTerm(sectorData.getTerm(), TermType.valueOf(sectorData.getType()), sectorType));
             }
             synchronized (this) {
                 mDownloadedSectors.postValue(sectorModel);

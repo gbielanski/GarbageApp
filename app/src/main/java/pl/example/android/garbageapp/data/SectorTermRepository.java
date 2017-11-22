@@ -3,14 +3,13 @@ package pl.example.android.garbageapp.data;
 import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.database.SectorTermDao;
-import pl.example.android.garbageapp.data.database.TermType;
+import pl.example.android.garbageapp.data.database.SectorType;
 import pl.example.android.garbageapp.data.network.SectorTermsNetworkDataSource;
-import pl.example.android.garbageapp.data.network.model.Sector;
 import pl.example.android.garbageapp.utils.AppExecutors;
 
 /**
@@ -35,7 +34,7 @@ public class SectorTermRepository {
         mSectorTermsNetworkDataSource = sectorTermsNetworkDataSource;
         mExecutors = executors;
 
-        LiveData<List<Sector>> sectorNetworkData = mSectorTermsNetworkDataSource.getDownloadedSectors();
+        LiveData<List<SectorTerm>> sectorNetworkData = mSectorTermsNetworkDataSource.getDownloadedSectors();
         sectorNetworkData.observeForever(newSectorTermsFromNetwork -> {
             mExecutors.diskIO().execute(() -> {
                 deleteOldData();
@@ -82,19 +81,15 @@ public class SectorTermRepository {
         mSectorTermDao.deleteAll();
     }
 
-    private void insertNewData(List<Sector> sectors) {
-        List<SectorTerm> sectorTerms = new ArrayList<>();
-        for (Sector s : sectors) {
-            SectorTerm st = new SectorTerm(s.getTerm(), TermType.valueOf(s.getType()));
-            sectorTerms.add(st);
-        }
+    private void insertNewData(List<SectorTerm> sectorTerms) {
         mSectorTermDao.bulkInsert(
                 (SectorTerm[]) sectorTerms.toArray(new SectorTerm[sectorTerms.size()])
         );
     }
 
-    public LiveData<List<SectorTerm>> getCurrentSectorTerms() {
+    public LiveData<List<SectorTerm>> getCurrentSectorTerms(SectorType sectorType) {
         initializeData();
+        //return mSectorTermDao.getCurrentSectorTerms(new Date(), sectorType);
         return mSectorTermDao.getAllSectorTerms();
     }
 }

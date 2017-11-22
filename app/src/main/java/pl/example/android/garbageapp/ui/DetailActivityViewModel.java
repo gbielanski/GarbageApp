@@ -17,7 +17,7 @@ class DetailActivityViewModel extends ViewModel {
     DetailActivityViewModel(SectorTermRepository repository, SectorType sectorType) {
         this.sectorType = sectorType;
         mRepository = repository;
-        mSectorTerms = mRepository.getCurrentSectorTerms();
+        mSectorTerms = mRepository.getCurrentSectorTerms(sectorType);
     }
 
     LiveData<List<SectorTerm>> getSectorTerms() {
