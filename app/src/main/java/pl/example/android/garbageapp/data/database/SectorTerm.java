@@ -24,7 +24,7 @@ public class SectorTerm {
     private SectorType sectorType;
 
     @Ignore
-    public SectorTerm(String term, TermType termType) {
+    public SectorTerm(String term, TermType termType, SectorType sectorType) {
         String dateFormat = "yyyy.MM.dd";
         Date dateTerm = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
@@ -36,7 +36,7 @@ public class SectorTerm {
 
         this.term = dateTerm;
         this.termType = termType;
-        sectorType = SectorType.GREEN;
+        this.sectorType = sectorType;
     }
 
     // Constructor used by Room

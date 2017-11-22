@@ -4,14 +4,14 @@ package pl.example.android.garbageapp.data.network.model;
  * Created by miltomasz on 08/11/17.
  */
 
-public class Sector {
+public class SectorData {
     private String id;
     private String term;
     private String type;
 
-    public Sector() {}
+    public SectorData() {}
 
-    public Sector(String term, String type) {
+    public SectorData(String term, String type) {
         this.term = term;
         this.type = type;
     }
