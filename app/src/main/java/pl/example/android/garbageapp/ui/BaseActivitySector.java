@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.util.List;
+
 import pl.example.android.garbageapp.R;
 import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.database.SectorType;
@@ -34,7 +36,13 @@ public abstract class BaseActivitySector extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         DetailViewModelFactory factory = InjectorUtils.provideDetailViewModelFactory(currentSector().getApplicationContext(), sectorType());
         mViewModel = ViewModelProviders.of(currentSector(), factory).get(DetailActivityViewModel.class);
+        mViewModel.getSectorTerms().observe(this, sectorTerms ->{
+            if(sectorTerms != null)
+                bindDataToUI(sectorTerms);
+        });
     }
+
+    protected abstract void bindDataToUI(List<SectorTerm> sectorTerms);
 
     protected boolean isMarkedForNotification(){
         int notificationSectorType = SectorType.toInt(SectorType.UNSET);
