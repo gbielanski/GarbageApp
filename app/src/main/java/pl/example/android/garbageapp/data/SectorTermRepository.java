@@ -3,6 +3,7 @@ package pl.example.android.garbageapp.data;
 import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -89,7 +90,19 @@ public class SectorTermRepository {
 
     public LiveData<List<SectorTerm>> getCurrentSectorTerms(SectorType sectorType) {
         initializeData();
-        //return mSectorTermDao.getCurrentSectorTerms(new Date(), sectorType);
-        return mSectorTermDao.getAllSectorTerms();
+
+        Date yesterday = getYesterdayEndOfDay();
+        return mSectorTermDao.getCurrentSectorTerms(yesterday, sectorType);
+        //return mSectorTermDao.getAllSectorTerms();
+    }
+
+    private Date getYesterdayEndOfDay() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        return calendar.getTime();
     }
 }
