@@ -8,6 +8,7 @@ import java.util.List;
 
 import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.database.SectorTermDao;
+import pl.example.android.garbageapp.data.database.SectorTermsDatabaseDataSource;
 import pl.example.android.garbageapp.data.database.TermType;
 import pl.example.android.garbageapp.data.network.SectorTermsNetworkDataSource;
 import pl.example.android.garbageapp.data.network.model.Sector;
@@ -25,14 +26,17 @@ public class SectorTermRepository {
     private static SectorTermRepository sInstance;
     private final SectorTermDao mSectorTermDao;
     private final SectorTermsNetworkDataSource mSectorTermsNetworkDataSource;
+    private final SectorTermsDatabaseDataSource mSectorTermsDatabaseDataSource;
     private final AppExecutors mExecutors;
     private boolean mInitialized = false;
 
     private SectorTermRepository(SectorTermDao sectorTermDao,
                                  SectorTermsNetworkDataSource sectorTermsNetworkDataSource,
+                                 SectorTermsDatabaseDataSource sectorTermsDatabaseDataSource,
                                  AppExecutors executors) {
         mSectorTermDao = sectorTermDao;
         mSectorTermsNetworkDataSource = sectorTermsNetworkDataSource;
+        mSectorTermsDatabaseDataSource = sectorTermsDatabaseDataSource;
         mExecutors = executors;
 
         LiveData<List<Sector>> sectorNetworkData = mSectorTermsNetworkDataSource.getDownloadedSectors();
@@ -48,37 +52,19 @@ public class SectorTermRepository {
 
     public synchronized static SectorTermRepository getInstance(SectorTermDao sectorTermDao,
                                                                 SectorTermsNetworkDataSource sectorTermsNetworkDataSource,
+                                                                SectorTermsDatabaseDataSource sectorTermsDatabaseDataSource,
                                                                 AppExecutors executors) {
         Log.d(LOG_TAG, "Getting the repository");
         if (sInstance == null) {
             synchronized (LOCK) {
-                sInstance = new SectorTermRepository(
-                        sectorTermDao, sectorTermsNetworkDataSource, executors);
+                sInstance = new SectorTermRepository(sectorTermDao, sectorTermsNetworkDataSource,
+                        sectorTermsDatabaseDataSource, executors);
                 Log.d(LOG_TAG, "Made new repository");
             }
         }
         return sInstance;
     }
 
-//    public void scheduleRecurringFetchSectorTermsSync() {
-//        Driver driver = new GooglePlayDriver(mContext);
-//               FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
-//
-//                       Job syncSunshineJob = dispatcher.newJobBuilder()
-//                                .setService(SectorTermFirebaseJobService.class)
-//                                .setTag(SECTOR_TERMS__SYNC_TAG)
-//                                .setConstraints(Constraint.ON_ANY_NETWORK)
-//                                .setLifetime(Lifetime.FOREVER)
-//                                .setRecurring(true)
-//                                .setTrigger(Trigger.executionWindow(
-//                                        SYNC_INTERVAL_SECONDS,
-//                                        SYNC_INTERVAL_SECONDS + SYNC_FLEXTIME_SECONDS))
-//                                .setReplaceCurrent(true)
-//                                .build();
-//                // Schedule the Job with the dispatcher
-//                        dispatcher.schedule(syncSunshineJob);
-//                Log.d(LOG_TAG, "Sync Sector terms Job scheduled");
-//    }
 
     private synchronized void initializeData() {
         if (mInitialized) {
@@ -89,11 +75,10 @@ public class SectorTermRepository {
         // setup job scheduler for fetching sector terms every 12 hrs
         mSectorTermsNetworkDataSource.scheduleRecurringFetchSectorTermsSync();
 
-        // fetch sector terms now
-        mExecutors.diskIO().execute(() -> startFetchSectorTerms());
-    }
+        // setup alarm manager for checking if notification is needed
+        mSectorTermsDatabaseDataSource.scheduleCountingSectorTermsForNotification();
 
-    private void startFetchSectorTerms() {
+        // fetch sector terms now
         mSectorTermsNetworkDataSource.startSectorTermsSyncService();
     }
 
