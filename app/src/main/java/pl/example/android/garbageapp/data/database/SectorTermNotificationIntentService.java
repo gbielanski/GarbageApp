@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import pl.example.android.garbageapp.data.network.SectorTermsNetworkDataSource;
 import pl.example.android.garbageapp.utils.InjectorUtils;
 
 /**
@@ -23,8 +22,8 @@ public class SectorTermNotificationIntentService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.d(LOG_TAG, "SectorTermNotificationIntentService started");
-        SectorTermsNetworkDataSource sectorTermsNetworkDataSource =
-                InjectorUtils.provideNetworkDataSource(getApplicationContext());
-        sectorTermsNetworkDataSource.fetchSectorTerms();
+        SectorTermsDatabaseDataSource sectorTermsDatabaseDataSource =
+                InjectorUtils.provideDatabaseDataSource(getApplicationContext());
+        sectorTermsDatabaseDataSource.countSectorTermsForNotification();
     }
 }
