@@ -125,13 +125,13 @@ public class SectorTermsNetworkDataSource {
 
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            List<SectorTerm> sectorModel = new ArrayList<>();
+            List<SectorTerm> sectorTerms = new ArrayList<>();
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                 SectorData sectorData = snapshot.getValue(SectorData.class);
-                sectorModel.add(new SectorTerm(sectorData.getTerm(), TermType.valueOf(sectorData.getType()), sectorType));
+                sectorTerms.add(new SectorTerm(sectorData.getTerm(), TermType.valueOf(sectorData.getType()), sectorType));
             }
             synchronized (this) {
-                mDownloadedSectors.postValue(sectorModel);
+                mDownloadedSectors.postValue(sectorTerms);
             }
         }
 
