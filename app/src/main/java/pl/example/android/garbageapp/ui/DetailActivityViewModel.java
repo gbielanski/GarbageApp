@@ -3,19 +3,24 @@ package pl.example.android.garbageapp.ui;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
+import java.util.List;
+
+import pl.example.android.garbageapp.data.SectorTermRepository;
 import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.database.SectorType;
 
-public class DetailActivityViewModel extends ViewModel {
-    private final LiveData<SectorTerm> mSectorTerm;
+class DetailActivityViewModel extends ViewModel {
+    private final LiveData<List<SectorTerm>> mSectorTerms;
     private final SectorType sectorType;
-    //TODO private final SectorTermRepository mRepository;
+    private final SectorTermRepository mRepository;
 
-    public DetailActivityViewModel(/* repository here,*/ SectorType sectorType) {
+    DetailActivityViewModel(SectorTermRepository repository, SectorType sectorType) {
         this.sectorType = sectorType;
+        mRepository = repository;
+        mSectorTerms = mRepository.getCurrentSectorTerms();
+    }
 
-        //TODO get live data from repository
-        mSectorTerm = null;
-
+    LiveData<List<SectorTerm>> getSectorTerms() {
+        return mSectorTerms;
     }
 }
