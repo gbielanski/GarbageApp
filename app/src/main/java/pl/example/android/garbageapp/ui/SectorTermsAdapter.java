@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pl.example.android.garbageapp.R;
@@ -16,12 +17,12 @@ import pl.example.android.garbageapp.utilities.SectorTermsUtil;
 
 class SectorTermsAdapter extends RecyclerView.Adapter<SectorTermsAdapter.TermViewHolder> {
 
-    public final int VIEW_TYPE_FIRST = 1;
-    public final int VIEW_TYPE_ANY = 0;
-    private List<SectorTerm> mSectorTermsData = SectorTermsUtil.getFakeSectorTermsData();
+    private final int VIEW_TYPE_FIRST = 1;
+    private final int VIEW_TYPE_ANY = 0;
+    private List<SectorTerm> mSectorTermsData = new ArrayList<>();
     private int mSelectorColor;
 
-    public SectorTermsAdapter(int color) {
+    SectorTermsAdapter(int color) {
         this.mSelectorColor = color;
     }
 
@@ -63,18 +64,24 @@ class SectorTermsAdapter extends RecyclerView.Adapter<SectorTermsAdapter.TermVie
         return mSectorTermsData.size();
     }
 
-    public class TermViewHolder extends RecyclerView.ViewHolder {
+    public void setData(List<SectorTerm> sectorTermsData){
+        mSectorTermsData = sectorTermsData;
+        notifyDataSetChanged();
+    }
+
+    class TermViewHolder extends RecyclerView.ViewHolder {
         SmallRcListElementBinding smallElementBinding;
         BigRcListElementBinding bigElementBinding;
 
-        public TermViewHolder(SmallRcListElementBinding binding) {
+        TermViewHolder(SmallRcListElementBinding binding) {
             super(binding.getRoot());
             this.smallElementBinding = binding;
         }
 
-        public TermViewHolder(BigRcListElementBinding binding) {
+        TermViewHolder(BigRcListElementBinding binding) {
             super(binding.getRoot());
             this.bigElementBinding = binding;
         }
+
     }
 }

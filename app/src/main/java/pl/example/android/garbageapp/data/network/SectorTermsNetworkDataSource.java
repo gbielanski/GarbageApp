@@ -69,6 +69,7 @@ public class SectorTermsNetworkDataSource {
     }
 
     public void scheduleRecurringFetchSectorTermsSync() {
+
         Driver driver = new GooglePlayDriver(mContext);
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
 
