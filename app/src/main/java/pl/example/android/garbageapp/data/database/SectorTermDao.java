@@ -13,7 +13,7 @@ import java.util.List;
 public interface SectorTermDao {
 
     @Query("SELECT * FROM sector_terms WHERE term >= :term AND sectorType == :sectorType")
-    LiveData<List<SectorTerm>> getFutureSectorTerms(Date term, int sectorType);
+    LiveData<List<SectorTerm>> getCurrentSectorTerms(Date term, SectorType sectorType);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void bulkInsert(SectorTerm... sectorTerm);
