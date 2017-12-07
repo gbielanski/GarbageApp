@@ -1,5 +1,6 @@
 package pl.example.android.garbageapp.utils;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
@@ -10,9 +11,14 @@ import java.util.concurrent.TimeUnit;
 
 public class SectorTermsDateUtils {
 
-    public static Date getNormalizedUtcDateForToday() {
+    public static Date getNormalizedUtcDateForTomorrow() {
         long normalizedMilli = getNormalizedUtcMsForToday();
-        return new Date(normalizedMilli);
+        Date today = new Date(normalizedMilli);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.DATE, 1);
+        Date tomorrow = calendar.getTime();
+        return tomorrow;
     }
 
     public static long getNormalizedUtcMsForToday() {

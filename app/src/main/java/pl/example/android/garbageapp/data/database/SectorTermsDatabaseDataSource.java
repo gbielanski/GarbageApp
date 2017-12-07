@@ -10,6 +10,7 @@ import android.util.Log;
 import java.util.Calendar;
 import java.util.Date;
 
+import pl.example.android.garbageapp.R;
 import pl.example.android.garbageapp.utils.AppExecutors;
 import pl.example.android.garbageapp.utils.NotificationUtils;
 import pl.example.android.garbageapp.utils.SectorTermsDateUtils;
@@ -62,19 +63,20 @@ public class SectorTermsDatabaseDataSource {
     }
 
     public void countSectorTermsForNotification() {
-        Date today = SectorTermsDateUtils.getNormalizedUtcDateForToday();
-        int count = mSectorTermDao.countSectorTermsForToday(today);
-        if (count > 0) {
-            NotificationUtils.showNotification(mContext, "Dziś wywóz śmieci");
+        Date tomorrow = SectorTermsDateUtils.getNormalizedUtcDateForTomorrow();
+        int count = mSectorTermDao.countSectorTermsForTomorrow(tomorrow);
+        String msg = mContext.getString(R.string.tomorrow_garbage_collection_msg);
+        for (int i = 0; i < count; i++) {
+            NotificationUtils.showNotification(mContext, i, msg);
         }
     }
 
     @NonNull
     private Calendar getCalendarForNotification() {
-        // set the alarm to start at approximately 8:00 a.m.
+        // set the alarm to start at approximately 6:00 p.m.
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
         return calendar;
     }
 }
