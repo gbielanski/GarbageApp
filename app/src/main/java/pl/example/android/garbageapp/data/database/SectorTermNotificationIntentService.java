@@ -13,15 +13,15 @@ import pl.example.android.garbageapp.utils.InjectorUtils;
 
 public class SectorTermNotificationIntentService extends IntentService {
 
-    private static final String LOG_TAG = SectorTermNotificationIntentService.class.getSimpleName();
+    private static String LOG_TAG, SERVICE_TAG = SectorTermNotificationIntentService.class.getSimpleName();
 
     public SectorTermNotificationIntentService() {
-        super("SectorTermNotificationIntentService");
+        super(SERVICE_TAG);
     }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        Log.d(LOG_TAG, "SectorTermNotificationIntentService started");
+        Log.d(LOG_TAG, "Service started");
         SectorTermsDatabaseDataSource sectorTermsDatabaseDataSource =
                 InjectorUtils.provideDatabaseDataSource(getApplicationContext());
         sectorTermsDatabaseDataSource.countSectorTermsForNotification();
