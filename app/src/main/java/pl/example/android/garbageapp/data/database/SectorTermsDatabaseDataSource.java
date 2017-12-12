@@ -4,6 +4,8 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -64,10 +66,17 @@ public class SectorTermsDatabaseDataSource {
 
     public void countSectorTermsForNotification() {
         Date tomorrow = SectorTermsDateUtils.getNormalizedUtcDateForTomorrow();
-        int count = mSectorTermDao.countSectorTermsForTomorrow(tomorrow);
+        int notificationSectorColor = SectorColor.toInt(SectorColor.UNSET);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        if(sharedPreferences.contains(NotificationUtils.NOTIFICATION_SECTOR_COLOR)) {
+            notificationSectorColor =
+                    sharedPreferences.getInt(NotificationUtils.NOTIFICATION_SECTOR_COLOR, notificationSectorColor);
+        }
+        int count = mSectorTermDao.countSectorTermsForTomorrow(tomorrow, notificationSectorColor);
         String msg = mContext.getString(R.string.tomorrow_garbage_collection_msg);
-        for (int i = 0; i < count; i++) {
-            NotificationUtils.showNotification(mContext, i, msg);
+
+        for (int notificationId = 0; notificationId < count; notificationId++) {
+            NotificationUtils.showNotification(mContext, notificationId, msg);
         }
     }
 

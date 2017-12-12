@@ -24,7 +24,7 @@ public class ActivitySectorBlue extends BaseActivitySector {
     }
 
     @Override
-    protected SectorColor sectorType() {
+    protected SectorColor sectorColor() {
         return SectorColor.BLUE;
     }
 
