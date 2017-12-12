@@ -4,13 +4,12 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
 
 import java.util.List;
 
 import pl.example.android.garbageapp.R;
 import pl.example.android.garbageapp.data.database.SectorTerm;
-import pl.example.android.garbageapp.data.database.SectorType;
+import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.databinding.ActivitySectorBlueBinding;
 
 import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
@@ -25,8 +24,8 @@ public class ActivitySectorBlue extends BaseActivitySector {
     }
 
     @Override
-    protected SectorType sectorType() {
-        return SectorType.BLUE;
+    protected SectorColor sectorType() {
+        return SectorColor.BLUE;
     }
 
     @Override

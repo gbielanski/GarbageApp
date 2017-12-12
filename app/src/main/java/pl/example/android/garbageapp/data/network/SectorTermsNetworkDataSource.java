@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.network.model.Sector;
 import pl.example.android.garbageapp.utils.AppExecutors;
 
@@ -47,7 +48,7 @@ public class SectorTermsNetworkDataSource {
 
     // Database & Firebase
     private DatabaseReference mFirebaseDatabaseReference;
-    private MutableLiveData<List<Sector>> mDownloadedSectors;
+    private MutableLiveData<List<SectorTerm>> mDownloadedSectors;
     private final Context mContext;
 
     private SectorTermsNetworkDataSource(Context context, AppExecutors executors) {
@@ -97,17 +98,11 @@ public class SectorTermsNetworkDataSource {
 
     public void fetchSectorTerms() {
         Log.d(LOG_TAG, "Fetch sector terms started");
-        DatabaseReference blueRef = mFirebaseDatabaseReference.child("blue");
-        blueRef.addValueEventListener(new SectorValueEventListener());
-
-        DatabaseReference greenRef = mFirebaseDatabaseReference.child("green");
-        greenRef.addValueEventListener(new SectorValueEventListener());
-
-        DatabaseReference yellowRef = mFirebaseDatabaseReference.child("yellow");
-        yellowRef.addValueEventListener(new SectorValueEventListener());
+        DatabaseReference mainNodeRef = mFirebaseDatabaseReference.getRef();
+        mainNodeRef.addValueEventListener(new SectorValueEventListener());
     }
 
-    public LiveData<List<Sector>> getDownloadedSectors() {
+    public LiveData<List<SectorTerm>> getDownloadedSectors() {
         return mDownloadedSectors;
     }
 
@@ -115,13 +110,16 @@ public class SectorTermsNetworkDataSource {
 
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            List<Sector> sectorModel = new ArrayList<>();
-            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                Sector sector = snapshot.getValue(Sector.class);
-                sectorModel.add(sector);
+            List<SectorTerm> sectorTerms = new ArrayList<>();
+            for(DataSnapshot termSnapshot : dataSnapshot.getChildren()) {
+                String termColor = termSnapshot.getKey();
+                for (DataSnapshot snapshot : termSnapshot.getChildren()) {
+                    Sector sector = snapshot.getValue(Sector.class);
+                    sectorTerms.add(new SectorTerm(sector, termColor));
+                }
             }
             synchronized (this) {
-                mDownloadedSectors.postValue(sectorModel);
+                mDownloadedSectors.postValue(sectorTerms);
             }
         }
 

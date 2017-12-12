@@ -6,18 +6,18 @@ import android.arch.lifecycle.ViewModel;
 import java.util.List;
 
 import pl.example.android.garbageapp.data.SectorTermRepository;
+import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.data.database.SectorTerm;
-import pl.example.android.garbageapp.data.database.SectorType;
 
 class DetailActivityViewModel extends ViewModel {
     private final LiveData<List<SectorTerm>> mSectorTerms;
-    private final SectorType sectorType;
+    private final SectorColor sectorColor;
     private final SectorTermRepository mRepository;
 
-    DetailActivityViewModel(SectorTermRepository repository, SectorType sectorType) {
-        this.sectorType = sectorType;
+    DetailActivityViewModel(SectorTermRepository repository, SectorColor sectorColor) {
+        this.sectorColor = sectorColor;
         mRepository = repository;
-        mSectorTerms = mRepository.getCurrentSectorTerms();
+        mSectorTerms = mRepository.getCurrentSectorTerms(sectorColor);
     }
 
     LiveData<List<SectorTerm>> getSectorTerms() {
