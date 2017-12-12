@@ -13,6 +13,8 @@ import pl.example.android.garbageapp.R;
 
 public class NotificationUtils {
 
+    public static final String NOTIFICATION_SECTOR_COLOR = "NOTIFICATION_SECTOR_COLOR";
+
     private NotificationUtils() {}
 
     public static void showNotification(Context context, int notificationId, String contentText) {

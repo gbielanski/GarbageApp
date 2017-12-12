@@ -13,10 +13,11 @@ import pl.example.android.garbageapp.utils.InjectorUtils;
 
 public class SectorTermNotificationIntentService extends IntentService {
 
-    private static String LOG_TAG, SERVICE_TAG = SectorTermNotificationIntentService.class.getSimpleName();
+    private static final String SERVICE_NAME = SectorTermNotificationIntentService.class.getSimpleName();
+    private static final String LOG_TAG = SERVICE_NAME;
 
     public SectorTermNotificationIntentService() {
-        super(SERVICE_TAG);
+        super(SERVICE_NAME);
     }
 
     @Override

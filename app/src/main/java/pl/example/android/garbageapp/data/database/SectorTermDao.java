@@ -27,6 +27,6 @@ public interface SectorTermDao {
     @Query("DELETE FROM sector_terms")
     void deleteAll();
 
-    @Query("SELECT COUNT(*) FROM sector_terms WHERE term = :tomorrow")
-    int countSectorTermsForTomorrow(Date tomorrow);
+    @Query("SELECT COUNT(*) FROM sector_terms WHERE term = :tomorrow AND sectorColor = :sectorColor")
+    int countSectorTermsForTomorrow(Date tomorrow, int sectorColor);
 }
