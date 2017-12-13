@@ -3,13 +3,15 @@ package pl.example.android.garbageapp.data;
 import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.database.SectorTermDao;
-import pl.example.android.garbageapp.data.database.SectorType;
+
+import pl.example.android.garbageapp.data.database.SectorTermsDatabaseDataSource;
+
 import pl.example.android.garbageapp.data.network.SectorTermsNetworkDataSource;
 import pl.example.android.garbageapp.utils.AppExecutors;
 
@@ -25,21 +27,24 @@ public class SectorTermRepository {
     private static SectorTermRepository sInstance;
     private final SectorTermDao mSectorTermDao;
     private final SectorTermsNetworkDataSource mSectorTermsNetworkDataSource;
+    private final SectorTermsDatabaseDataSource mSectorTermsDatabaseDataSource;
     private final AppExecutors mExecutors;
     private boolean mInitialized = false;
 
     private SectorTermRepository(SectorTermDao sectorTermDao,
                                  SectorTermsNetworkDataSource sectorTermsNetworkDataSource,
+                                 SectorTermsDatabaseDataSource sectorTermsDatabaseDataSource,
                                  AppExecutors executors) {
         mSectorTermDao = sectorTermDao;
         mSectorTermsNetworkDataSource = sectorTermsNetworkDataSource;
+        mSectorTermsDatabaseDataSource = sectorTermsDatabaseDataSource;
         mExecutors = executors;
 
         LiveData<List<SectorTerm>> sectorNetworkData = mSectorTermsNetworkDataSource.getDownloadedSectors();
         sectorNetworkData.observeForever(newSectorTermsFromNetwork -> {
             mExecutors.diskIO().execute(() -> {
                 deleteOldData();
-                Log.d(LOG_TAG, "Old weather deleted");
+                Log.d(LOG_TAG, "Old sector terms deleted");
                 insertNewData(newSectorTermsFromNetwork);
                 Log.d(LOG_TAG, "New values inserted");
             });
@@ -48,17 +53,19 @@ public class SectorTermRepository {
 
     public synchronized static SectorTermRepository getInstance(SectorTermDao sectorTermDao,
                                                                 SectorTermsNetworkDataSource sectorTermsNetworkDataSource,
+                                                                SectorTermsDatabaseDataSource sectorTermsDatabaseDataSource,
                                                                 AppExecutors executors) {
         Log.d(LOG_TAG, "Getting the repository");
         if (sInstance == null) {
             synchronized (LOCK) {
-                sInstance = new SectorTermRepository(
-                        sectorTermDao, sectorTermsNetworkDataSource, executors);
+                sInstance = new SectorTermRepository(sectorTermDao, sectorTermsNetworkDataSource,
+                        sectorTermsDatabaseDataSource, executors);
                 Log.d(LOG_TAG, "Made new repository");
             }
         }
         return sInstance;
     }
+
 
     private synchronized void initializeData() {
         if (mInitialized) {
@@ -69,11 +76,10 @@ public class SectorTermRepository {
         // setup job scheduler for fetching sector terms every 12 hrs
         mSectorTermsNetworkDataSource.scheduleRecurringFetchSectorTermsSync();
 
-        // fetch sector terms now
-        mExecutors.diskIO().execute(() -> startFetchSectorTerms());
-    }
+        // setup alarm manager for checking if notification is needed
+        mSectorTermsDatabaseDataSource.scheduleCountingSectorTermsForNotification();
 
-    private void startFetchSectorTerms() {
+        // fetch sector terms now
         mSectorTermsNetworkDataSource.startSectorTermsSyncService();
     }
 
@@ -88,21 +94,9 @@ public class SectorTermRepository {
         );
     }
 
-    public LiveData<List<SectorTerm>> getCurrentSectorTerms(SectorType sectorType) {
+    public LiveData<List<SectorTerm>> getCurrentSectorTerms(SectorColor sectorColor) {
         initializeData();
-
-        Date yesterday = getYesterdayEndOfDay();
-        return mSectorTermDao.getCurrentSectorTerms(yesterday, sectorType);
-        //return mSectorTermDao.getAllSectorTerms();
-    }
-
-    private Date getYesterdayEndOfDay() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
-        calendar.set(Calendar.MINUTE, 59);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        calendar.add(Calendar.DAY_OF_MONTH, -1);
-        return calendar.getTime();
+        Date today = new Date();
+        return mSectorTermDao.getFutureSectorTerms(today, SectorColor.toInt(sectorColor));
     }
 }

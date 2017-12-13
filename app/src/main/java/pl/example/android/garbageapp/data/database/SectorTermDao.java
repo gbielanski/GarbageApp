@@ -12,8 +12,8 @@ import java.util.List;
 @Dao
 public interface SectorTermDao {
 
-    @Query("SELECT * FROM sector_terms WHERE term >= :term AND sectorType == :sectorType")
-    LiveData<List<SectorTerm>> getCurrentSectorTerms(Date term, SectorType sectorType);
+    @Query("SELECT * FROM sector_terms WHERE term >= :term AND sectorColor == :sectorColor")
+    LiveData<List<SectorTerm>> getFutureSectorTerms(Date term, int sectorColor);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void bulkInsert(SectorTerm... sectorTerm);
@@ -26,4 +26,7 @@ public interface SectorTermDao {
 
     @Query("DELETE FROM sector_terms")
     void deleteAll();
+
+    @Query("SELECT COUNT(*) FROM sector_terms WHERE term = :tomorrow AND sectorColor = :sectorColor")
+    int countSectorTermsForTomorrow(Date tomorrow, int sectorColor);
 }

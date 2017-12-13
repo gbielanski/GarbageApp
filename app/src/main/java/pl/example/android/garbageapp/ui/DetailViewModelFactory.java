@@ -5,21 +5,21 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import pl.example.android.garbageapp.data.SectorTermRepository;
-import pl.example.android.garbageapp.data.database.SectorType;
+import pl.example.android.garbageapp.data.database.SectorColor;
 
 public class DetailViewModelFactory  extends ViewModelProvider.NewInstanceFactory {
     private final SectorTermRepository mRepository;
-    private final SectorType mSectorType;
+    private final SectorColor mSectorColor;
 
-    public DetailViewModelFactory(SectorTermRepository repository, SectorType sectorType) {
+    public DetailViewModelFactory(SectorTermRepository repository, SectorColor sectorColor) {
         this.mRepository = repository;
-        this.mSectorType = sectorType;
+        this.mSectorColor = sectorColor;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         //noinspection unchecked
-        return (T) new DetailActivityViewModel( mRepository, mSectorType);
+        return (T) new DetailActivityViewModel(mRepository, mSectorColor);
     }
 }

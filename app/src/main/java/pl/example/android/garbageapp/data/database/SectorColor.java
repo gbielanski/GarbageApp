@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public enum SectorType {
+public enum SectorColor {
     UNSET(0) {
         @Override
         public String toString() {
@@ -32,24 +32,33 @@ public enum SectorType {
 
     private int sectorTypeValue;
 
-    private static Map<Integer, SectorType> map = new HashMap<>();
+    private static Map<Integer, SectorColor> map = new HashMap<>();
 
     static {
-        for (SectorType sectorTypeEnum : SectorType.values()) {
-            map.put(sectorTypeEnum.sectorTypeValue, sectorTypeEnum);
+        for (SectorColor sectorColorEnum : SectorColor.values()) {
+            map.put(sectorColorEnum.sectorTypeValue, sectorColorEnum);
         }
     }
 
-    SectorType(final int type) {
+    SectorColor(final int type) {
         sectorTypeValue = type;
     }
 
-    public static SectorType valueOf(int type) {
+    public static SectorColor valueOf(int type) {
         return map.get(type);
     }
 
-    public static int toInt(SectorType sectorTypeEnum) {
-        return sectorTypeEnum.sectorTypeValue;
+    public static int toInt(SectorColor sectorColorEnum) {
+        return sectorColorEnum.sectorTypeValue;
+    }
+
+    public static SectorColor toSectorColor(String color) {
+        switch (color) {
+            case "blue" : return BLUE;
+            case "green" : return GREEN;
+            case "yellow" : return YELLOW;
+            default: return UNSET;
+        }
     }
 
     public abstract String toString();
