@@ -9,7 +9,9 @@ import java.util.List;
 import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.database.SectorTermDao;
+
 import pl.example.android.garbageapp.data.database.SectorTermsDatabaseDataSource;
+
 import pl.example.android.garbageapp.data.network.SectorTermsNetworkDataSource;
 import pl.example.android.garbageapp.utils.AppExecutors;
 

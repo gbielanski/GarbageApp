@@ -11,11 +11,9 @@ import pl.example.android.garbageapp.data.database.SectorTerm;
 
 class DetailActivityViewModel extends ViewModel {
     private final LiveData<List<SectorTerm>> mSectorTerms;
-    private final SectorColor sectorColor;
     private final SectorTermRepository mRepository;
 
     DetailActivityViewModel(SectorTermRepository repository, SectorColor sectorColor) {
-        this.sectorColor = sectorColor;
         mRepository = repository;
         mSectorTerms = mRepository.getCurrentSectorTerms(sectorColor);
     }
