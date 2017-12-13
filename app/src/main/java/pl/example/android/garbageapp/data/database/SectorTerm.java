@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import pl.example.android.garbageapp.data.network.model.Sector;
+import pl.example.android.garbageapp.data.network.model.SectorData;
 import pl.example.android.garbageapp.utilities.SectorTermsUtil;
 
 
@@ -25,7 +25,7 @@ public class SectorTerm {
     private SectorColor sectorColor;
 
     @Ignore
-    public SectorTerm(String term, TermType termType) {
+    public SectorTerm(String term, TermType termType, SectorColor sectorColor) {
         String dateFormat = "yyyy.MM.dd";
         Date dateTerm = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
@@ -37,7 +37,7 @@ public class SectorTerm {
 
         this.term = dateTerm;
         this.termType = termType;
-        this.sectorColor = SectorColor.GREEN;
+        this.sectorColor = sectorColor;
     }
 
     // Constructor used by Room
@@ -49,9 +49,9 @@ public class SectorTerm {
     }
 
     @Ignore
-    public SectorTerm(Sector sector, String color) {
-        this.term = SectorTermsUtil.getTermDate(sector.getTerm());
-        this.termType = TermType.toTermType(sector.getType());
+    public SectorTerm(SectorData sectorData, String color) {
+        this.term = SectorTermsUtil.getTermDate(sectorData.getTerm());
+        this.termType = TermType.toTermType(sectorData.getType());
         this.sectorColor = SectorColor.toSectorColor(color);
     }
 

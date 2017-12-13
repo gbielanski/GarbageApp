@@ -20,6 +20,6 @@ public class DetailViewModelFactory  extends ViewModelProvider.NewInstanceFactor
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         //noinspection unchecked
-        return (T) new DetailActivityViewModel( mRepository, mSectorColor);
+        return (T) new DetailActivityViewModel(mRepository, mSectorColor);
     }
 }

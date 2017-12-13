@@ -23,8 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.data.database.SectorTerm;
-import pl.example.android.garbageapp.data.network.model.Sector;
+
+import pl.example.android.garbageapp.data.network.model.SectorData;
+
 import pl.example.android.garbageapp.utils.AppExecutors;
 
 /**
@@ -87,7 +90,7 @@ public class SectorTermsNetworkDataSource {
                 .build();
         // Schedule the Job with the dispatcher
         dispatcher.schedule(syncSectorTermsJob);
-        Log.d(LOG_TAG, "Sync Sector terms Job scheduled");
+        Log.d(LOG_TAG, "Sync SectorData terms Job scheduled");
     }
 
     public void startSectorTermsSyncService() {
@@ -114,8 +117,8 @@ public class SectorTermsNetworkDataSource {
             for(DataSnapshot termSnapshot : dataSnapshot.getChildren()) {
                 String termColor = termSnapshot.getKey();
                 for (DataSnapshot snapshot : termSnapshot.getChildren()) {
-                    Sector sector = snapshot.getValue(Sector.class);
-                    sectorTerms.add(new SectorTerm(sector, termColor));
+                    SectorData sectorData = snapshot.getValue(SectorData.class);
+                    sectorTerms.add(new SectorTerm(sectorData, termColor));
                 }
             }
             synchronized (this) {
