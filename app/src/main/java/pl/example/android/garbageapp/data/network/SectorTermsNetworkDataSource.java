@@ -23,10 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.data.database.SectorTerm;
-import pl.example.android.garbageapp.data.database.SectorType;
-import pl.example.android.garbageapp.data.database.TermType;
+
 import pl.example.android.garbageapp.data.network.model.SectorData;
+
 import pl.example.android.garbageapp.utils.AppExecutors;
 
 /**
@@ -100,14 +101,8 @@ public class SectorTermsNetworkDataSource {
 
     public void fetchSectorTerms() {
         Log.d(LOG_TAG, "Fetch sector terms started");
-        DatabaseReference blueRef = mFirebaseDatabaseReference.child("blue");
-        blueRef.addValueEventListener(new SectorValueEventListener(SectorType.BLUE));
-
-        DatabaseReference greenRef = mFirebaseDatabaseReference.child("green");
-        greenRef.addValueEventListener(new SectorValueEventListener(SectorType.GREEN));
-
-        DatabaseReference yellowRef = mFirebaseDatabaseReference.child("yellow");
-        yellowRef.addValueEventListener(new SectorValueEventListener(SectorType.YELLOW));
+        DatabaseReference mainNodeRef = mFirebaseDatabaseReference.getRef();
+        mainNodeRef.addValueEventListener(new SectorValueEventListener());
     }
 
     public LiveData<List<SectorTerm>> getDownloadedSectors() {
@@ -116,19 +111,15 @@ public class SectorTermsNetworkDataSource {
 
     private class SectorValueEventListener implements ValueEventListener {
 
-        private SectorType sectorType;
-
-        SectorValueEventListener(SectorType sectorType){
-            super();
-            this.sectorType = sectorType;
-        }
-
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             List<SectorTerm> sectorTerms = new ArrayList<>();
-            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                SectorData sectorData = snapshot.getValue(SectorData.class);
-                sectorTerms.add(new SectorTerm(sectorData.getTerm(), TermType.valueOf(sectorData.getType()), sectorType));
+            for(DataSnapshot termSnapshot : dataSnapshot.getChildren()) {
+                String termColor = termSnapshot.getKey();
+                for (DataSnapshot snapshot : termSnapshot.getChildren()) {
+                    SectorData sectorData = snapshot.getValue(SectorData.class);
+                    sectorTerms.add(new SectorTerm(sectorData, termColor));
+                }
             }
             synchronized (this) {
                 mDownloadedSectors.postValue(sectorTerms);

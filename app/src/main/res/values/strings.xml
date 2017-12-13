@@ -8,7 +8,7 @@
     <string name="sector_3">SEKTOR III</string>
     <string name="sector_3_desc">ZIELONKA POŁUDNIOWA OD ULICY WYSZYŃSKIEGO (WŁĄCZNIE) W KIERUNKU REMBERTOWA</string>
     <string name="remind">PRZYPOMINAJ</string>
-    <string name="setup_notification">Przypomnienie ustawione dla <xliff:g id="sectorData" example="SEKTOR I ZIELONY">%s</xliff:g></string>
-    <string name="remove_notification">Przypomnienie dla <xliff:g id="sectorData" example="SEKTOR I ZIELONY">%s</xliff:g> usunięte</string>
-
+    <string name="setup_notification">Przypomnienie ustawione dla <xliff:g id="sector" example="SEKTOR I ZIELONY">%s</xliff:g></string>
+    <string name="remove_notification">Przypomnienie dla <xliff:g id="sector" example="SEKTOR I ZIELONY">%s</xliff:g> usunięte</string>
+    <string name="tomorrow_garbage_collection_msg">Jutro wywóz śmieci</string>
 </resources>

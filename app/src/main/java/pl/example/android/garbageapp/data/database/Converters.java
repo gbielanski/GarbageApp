@@ -16,13 +16,13 @@ public class Converters {
     }
 
     @TypeConverter
-    public static int toInt(SectorType sectorType) {
-        return SectorType.toInt(sectorType);
+    public static int toInt(SectorColor sectorColor) {
+        return SectorColor.toInt(sectorColor);
     }
 
     @TypeConverter
-    public static SectorType toSectorTyp(int sector) {
-        return SectorType.valueOf(sector);
+    public static SectorColor toSectorTyp(int sector) {
+        return SectorColor.valueOf(sector);
     }
 
     @TypeConverter
