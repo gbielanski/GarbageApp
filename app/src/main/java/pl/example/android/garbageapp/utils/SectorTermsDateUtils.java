@@ -1,12 +1,14 @@
 package pl.example.android.garbageapp.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by miltomasz on 11/11/17.
+ * Utility class collecting methods operating on dates in context of sector terms
  */
 
 public class SectorTermsDateUtils {
@@ -19,6 +21,12 @@ public class SectorTermsDateUtils {
         calendar.add(Calendar.DATE, 1);
         Date tomorrow = calendar.getTime();
         return tomorrow;
+    }
+
+    public static String getNextAlarmTime(long alarmTime) {
+        Date date = new Date(alarmTime);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm", new Locale("pl", "PL"));
+        return dateFormat.format(date);
     }
 
     public static long getNormalizedUtcMsForToday() {
