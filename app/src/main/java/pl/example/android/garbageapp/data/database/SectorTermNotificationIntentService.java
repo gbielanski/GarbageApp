@@ -8,7 +8,9 @@ import android.util.Log;
 import pl.example.android.garbageapp.utils.InjectorUtils;
 
 /**
- * Created by miltomasz on 15/11/17.
+ * Service class fired off by {@code {@link android.app.AlarmManager}} every day a given time.
+ * It launches {@code {@link SectorTermsDatabaseDataSource}} to count
+ * sector terms.
  */
 
 public class SectorTermNotificationIntentService extends IntentService {
@@ -22,7 +24,7 @@ public class SectorTermNotificationIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        Log.d(LOG_TAG, "Service started");
+        Log.d(LOG_TAG, "Notification service started");
         SectorTermsDatabaseDataSource sectorTermsDatabaseDataSource =
                 InjectorUtils.provideDatabaseDataSource(getApplicationContext());
         sectorTermsDatabaseDataSource.countSectorTermsForNotification();

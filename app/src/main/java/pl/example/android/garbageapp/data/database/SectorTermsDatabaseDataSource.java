@@ -18,12 +18,15 @@ import pl.example.android.garbageapp.utils.NotificationUtils;
 import pl.example.android.garbageapp.utils.SectorTermsDateUtils;
 
 /**
- * Created by miltomasz on 21/11/17.
+ * Service class for operating on local data source (sqlite, shared preferences).
+ * Implemented as singleton.
  */
 
 public class SectorTermsDatabaseDataSource {
 
     private static final String LOG_TAG = SectorTermsDatabaseDataSource.class.getSimpleName();
+    private static final int SIX_PM = 18;
+    private static final int ZERO = 00;
 
     private static final Object LOCK = new Object();
     private static SectorTermsDatabaseDataSource sInstance;
@@ -54,16 +57,24 @@ public class SectorTermsDatabaseDataSource {
         return sInstance;
     }
 
+    /**
+     * Sets up {@code {@link AlarmManager}} which fires off service
+     * {@code {@link SectorTermNotificationIntentService}} once a day.
+     */
     public void scheduleCountingSectorTermsForNotification() {
+        Log.d(LOG_TAG, "Schedule alarm manager for counting sector terms");
         Intent intent = new Intent(mContext, SectorTermNotificationIntentService.class);
         PendingIntent pendingIntent = PendingIntent.getService(mContext, 0, intent, 0 );
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         Calendar calendar = getCalendarForNotification();
         // set up alarm manager to repeat
-        alarmManager.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                 pendingIntent);
     }
 
+    /**
+     * Uses dao object to retrieve number of sector terms which should be processed next day.
+     */
     public void countSectorTermsForNotification() {
         Date tomorrow = SectorTermsDateUtils.getNormalizedUtcDateForTomorrow();
         int notificationSectorColor = SectorColor.toInt(SectorColor.UNSET);
@@ -75,17 +86,26 @@ public class SectorTermsDatabaseDataSource {
         int count = mSectorTermDao.countSectorTermsForTomorrow(tomorrow, notificationSectorColor);
         String msg = mContext.getString(R.string.tomorrow_garbage_collection_msg);
 
+        Log.d(LOG_TAG, "Sector terms counted: " + count + ". Notifying user");
         for (int notificationId = 0; notificationId < count; notificationId++) {
             NotificationUtils.showNotification(mContext, notificationId, msg);
         }
     }
 
+    /**
+     * Prepares exact date (hours, minutes, seconds) for {@code {@link AlarmManager}}
+     * @return date represented as {@code {@link Calendar}}
+     */
     @NonNull
     private Calendar getCalendarForNotification() {
         // set the alarm to start at approximately 6:00 p.m.
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.HOUR_OF_DAY, SIX_PM);
+        calendar.set(Calendar.MINUTE, ZERO);
+        calendar.set(Calendar.SECOND, ZERO);
+        Log.d(LOG_TAG, "Alarm manager time scheduled for: "
+                + SectorTermsDateUtils.getNextAlarmTime(calendar.getTimeInMillis()));
         return calendar;
     }
 }
