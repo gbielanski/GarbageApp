@@ -28,6 +28,10 @@
         <service
             android:name=".data.network.SectorTermFirebaseJobService"
             android:exported="false" />
+
+        <service
+            android:name=".data.database.SectorTermNotificationIntentService"
+            android:exported="false" />
     </application>
 
 
