@@ -56,7 +56,7 @@ public class SectorTerm {
     }
 
     public String getTermString() {
-        String dateFormat = "EEEE, d MMMM YYYY";
+        String dateFormat = "EEEE, d MMMM yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, new Locale("pl", "PL"));
         return simpleDateFormat.format(term);
     }
