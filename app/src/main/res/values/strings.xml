@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">GarbageApp</string>
+    <string name="app_name">Wystaw Śmieci</string>
     <string name="main_appbar_desc">HARMONOGRAM ODBIORU ODPADÓW W ZIELONCE</string>
     <string name="sector_1">SEKTOR I</string>
     <string name="sector_1_desc">ZIELONKA PÓŁNOCNA OD TORÓW KOLEJOWYCH W KIERUNKU MAREK</string>
