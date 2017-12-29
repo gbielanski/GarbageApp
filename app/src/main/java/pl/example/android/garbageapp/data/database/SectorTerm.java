@@ -26,7 +26,7 @@ public class SectorTerm {
 
     @Ignore
     public SectorTerm(String term, TermType termType, SectorColor sectorColor) {
-        String dateFormat = "yyyy.MM.dd";
+        String dateFormat = "yyyy-MM-dd";
         Date dateTerm = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
         try {
@@ -68,6 +68,8 @@ public class SectorTerm {
                 return "zmieszane";
             case SEGREGATED:
                 return "segregowane";
+            case BIO:
+                return "biodegradowalne";
             default:
                 return "UNKNOWN";
         }

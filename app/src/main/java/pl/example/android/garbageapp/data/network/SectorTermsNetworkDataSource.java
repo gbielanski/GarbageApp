@@ -45,6 +45,7 @@ public class SectorTermsNetworkDataSource {
     private static final int SYNC_INTERVAL_HOURS = 12;
     private static final int SYNC_INTERVAL_SECONDS = (int) TimeUnit.HOURS.toSeconds(SYNC_INTERVAL_HOURS);
     private static final int SYNC_FLEXTIME_SECONDS = SYNC_INTERVAL_SECONDS / 12;
+    public static final String ACTUAL_DATA_VERSION = "ver_2017_12_29";
 
     private static SectorTermsNetworkDataSource sInstance;
     private final AppExecutors mExecutors;
@@ -102,7 +103,8 @@ public class SectorTermsNetworkDataSource {
     public void fetchSectorTerms() {
         Log.d(LOG_TAG, "Fetch sector terms started");
         DatabaseReference mainNodeRef = mFirebaseDatabaseReference.getRef();
-        mainNodeRef.addValueEventListener(new SectorValueEventListener());
+        DatabaseReference dataNodeRef = mainNodeRef.child(ACTUAL_DATA_VERSION);
+        dataNodeRef.addValueEventListener(new SectorValueEventListener());
     }
 
     public LiveData<List<SectorTerm>> getDownloadedSectors() {

@@ -20,15 +20,15 @@ public class SectorTermsUtil {
 
     public static List<SectorTerm> getFakeSectorTermsData() {
         ArrayList<SectorTerm> sectorTermsList = new ArrayList<>();
-        sectorTermsList.add(new SectorTerm("2017.11.03", MIXED, SectorColor.GREEN));
-        sectorTermsList.add(new SectorTerm("2017.11.06", SEGREGATED, SectorColor.GREEN));
-        sectorTermsList.add(new SectorTerm("2017.11.17", MIXED, SectorColor.GREEN));
-        sectorTermsList.add(new SectorTerm("2017.12.01", MIXED, SectorColor.GREEN));
+        sectorTermsList.add(new SectorTerm("2018-11-03", MIXED, SectorColor.GREEN));
+        sectorTermsList.add(new SectorTerm("2018-11-06", SEGREGATED, SectorColor.GREEN));
+        sectorTermsList.add(new SectorTerm("2018-11-17", MIXED, SectorColor.GREEN));
+        sectorTermsList.add(new SectorTerm("2018-12-01", MIXED, SectorColor.GREEN));
         return sectorTermsList;
     }
 
     public static Date getTermDate(String stringDate) {
-        String dateFormat = "yyyy.MM.dd";
+        String dateFormat = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, new Locale("pl", "PL"));
         try {
             return simpleDateFormat.parse(stringDate);
