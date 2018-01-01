@@ -4,6 +4,8 @@ import android.databinding.DataBindingUtil;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.List;
 
@@ -17,6 +19,31 @@ import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 public class ActivitySectorYellow extends BaseActivitySector {
 
     private ActivitySectorYellowBinding binding;
+    private RecyclerView.AdapterDataObserver mDataObserver = new RecyclerView.AdapterDataObserver() {
+
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            checkEmpty();
+        }
+
+        @Override
+        public void onItemRangeInserted(int positionStart, int itemCount) {
+            super.onItemRangeInserted(positionStart, itemCount);
+            checkEmpty();
+        }
+
+        @Override
+        public void onItemRangeRemoved(int positionStart, int itemCount) {
+            super.onItemRangeRemoved(positionStart, itemCount);
+            checkEmpty();
+        }
+
+        void checkEmpty() {
+            binding.progressBar.setVisibility(getSectorTermsAdapter().getItemCount() == 0 ? View.VISIBLE : View.GONE);
+        }
+    };
+
 
     @Override
     protected FragmentActivity currentSector() {
@@ -31,11 +58,12 @@ public class ActivitySectorYellow extends BaseActivitySector {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.setAdapterDataObserver(mDataObserver);
+        super.setSectorTermsAdapter(new SectorTermsAdapter(R.color.colorSectorYellowPrimary));
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_yellow);
-        SectorTermsAdapter sectorTermsAdapter = new SectorTermsAdapter(R.color.colorSectorYellowPrimary);
         LinearLayoutManager verticalLinearLayoutManager = new LinearLayoutManager(this, VERTICAL, false);
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
-        binding.rcSectorTerms.setAdapter(sectorTermsAdapter);
+        binding.rcSectorTerms.setAdapter(getSectorTermsAdapter());
         binding.notificationSwitch.setOnClickListener(this::markForNotification);
 
         if(isMarkedForNotification())
@@ -47,4 +75,5 @@ public class ActivitySectorYellow extends BaseActivitySector {
         SectorTermsAdapter adapter = (SectorTermsAdapter) binding.rcSectorTerms.getAdapter();
         adapter.setData(sectorTerms);
     }
+
 }
