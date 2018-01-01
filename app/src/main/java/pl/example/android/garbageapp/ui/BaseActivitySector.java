@@ -2,10 +2,12 @@ package pl.example.android.garbageapp.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -27,6 +29,17 @@ public abstract class BaseActivitySector extends AppCompatActivity {
 
     protected abstract SectorColor sectorColor();
 
+    private SectorTermsAdapter mSectorTermsAdapter;
+
+    private RecyclerView.AdapterDataObserver mAdapterDataObserver;
+
+    public SectorTermsAdapter getSectorTermsAdapter() {
+        return mSectorTermsAdapter;
+    }
+
+    public void setSectorTermsAdapter(SectorTermsAdapter mSectorTermsAdapter) {
+        this.mSectorTermsAdapter = mSectorTermsAdapter;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,5 +72,21 @@ public abstract class BaseActivitySector extends AppCompatActivity {
         else
             Toast.makeText(currentSector(), getString(R.string.remove_notification, sectorColor().toString()), Toast.LENGTH_LONG).show();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mSectorTermsAdapter.registerAdapterDataObserver(mAdapterDataObserver);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mSectorTermsAdapter.unregisterAdapterDataObserver(mAdapterDataObserver);
+    }
+
+    protected void setAdapterDataObserver(RecyclerView.AdapterDataObserver adapterDataObserver){
+        mAdapterDataObserver = adapterDataObserver;
     }
 }
