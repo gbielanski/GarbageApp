@@ -31,7 +31,26 @@ public abstract class BaseActivitySector extends AppCompatActivity {
 
     private SectorTermsAdapter mSectorTermsAdapter;
 
-    private RecyclerView.AdapterDataObserver mAdapterDataObserver;
+    protected RecyclerView.AdapterDataObserver mAdapterDataObserver = new RecyclerView.AdapterDataObserver() {
+
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            checkEmpty();
+        }
+
+        @Override
+        public void onItemRangeInserted(int positionStart, int itemCount) {
+            super.onItemRangeInserted(positionStart, itemCount);
+            checkEmpty();
+        }
+
+        @Override
+        public void onItemRangeRemoved(int positionStart, int itemCount) {
+            super.onItemRangeRemoved(positionStart, itemCount);
+            checkEmpty();
+        }
+    };
 
     public SectorTermsAdapter getSectorTermsAdapter() {
         return mSectorTermsAdapter;
@@ -40,34 +59,35 @@ public abstract class BaseActivitySector extends AppCompatActivity {
     public void setSectorTermsAdapter(SectorTermsAdapter mSectorTermsAdapter) {
         this.mSectorTermsAdapter = mSectorTermsAdapter;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DetailViewModelFactory factory = InjectorUtils.provideDetailViewModelFactory(currentSector().getApplicationContext(), sectorColor());
         mViewModel = ViewModelProviders.of(currentSector(), factory).get(DetailActivityViewModel.class);
-        mViewModel.getSectorTerms().observe(this, sectorTerms ->{
-            if(sectorTerms != null)
+        mViewModel.getSectorTerms().observe(this, sectorTerms -> {
+            if (sectorTerms != null)
                 bindDataToUI(sectorTerms);
         });
     }
 
     protected abstract void bindDataToUI(List<SectorTerm> sectorTerms);
 
-    protected boolean isMarkedForNotification(){
+    protected boolean isMarkedForNotification() {
         int notificationSectorColor = SectorColor.toInt(SectorColor.UNSET);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(currentSector());
-        if(sharedPreferences.contains(NotificationUtils.NOTIFICATION_SECTOR_COLOR))
+        if (sharedPreferences.contains(NotificationUtils.NOTIFICATION_SECTOR_COLOR))
             notificationSectorColor = sharedPreferences.getInt(NotificationUtils.NOTIFICATION_SECTOR_COLOR, notificationSectorColor);
 
         return notificationSectorColor == SectorColor.toInt(sectorColor());
     }
 
-    protected void markForNotification(View view){
+    protected void markForNotification(View view) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(currentSector());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(NotificationUtils.NOTIFICATION_SECTOR_COLOR, SectorColor.toInt(sectorColor()));
         editor.apply();
-        if(((Switch) view).isChecked())
+        if (((Switch) view).isChecked())
             Toast.makeText(currentSector(), getString(R.string.setup_notification, sectorColor().toString()), Toast.LENGTH_LONG).show();
         else
             Toast.makeText(currentSector(), getString(R.string.remove_notification, sectorColor().toString()), Toast.LENGTH_LONG).show();
@@ -86,7 +106,5 @@ public abstract class BaseActivitySector extends AppCompatActivity {
         mSectorTermsAdapter.unregisterAdapterDataObserver(mAdapterDataObserver);
     }
 
-    protected void setAdapterDataObserver(RecyclerView.AdapterDataObserver adapterDataObserver){
-        mAdapterDataObserver = adapterDataObserver;
-    }
+    abstract void checkEmpty();
 }

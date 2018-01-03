@@ -19,31 +19,6 @@ import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 public class ActivitySectorYellow extends BaseActivitySector {
 
     private ActivitySectorYellowBinding binding;
-    private RecyclerView.AdapterDataObserver mDataObserver = new RecyclerView.AdapterDataObserver() {
-
-        @Override
-        public void onChanged() {
-            super.onChanged();
-            checkEmpty();
-        }
-
-        @Override
-        public void onItemRangeInserted(int positionStart, int itemCount) {
-            super.onItemRangeInserted(positionStart, itemCount);
-            checkEmpty();
-        }
-
-        @Override
-        public void onItemRangeRemoved(int positionStart, int itemCount) {
-            super.onItemRangeRemoved(positionStart, itemCount);
-            checkEmpty();
-        }
-
-        void checkEmpty() {
-            binding.progressBar.setVisibility(getSectorTermsAdapter().getItemCount() == 0 ? View.VISIBLE : View.GONE);
-        }
-    };
-
 
     @Override
     protected FragmentActivity currentSector() {
@@ -58,8 +33,7 @@ public class ActivitySectorYellow extends BaseActivitySector {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setAdapterDataObserver(mDataObserver);
-        super.setSectorTermsAdapter(new SectorTermsAdapter(R.color.colorSectorYellowPrimary));
+        setSectorTermsAdapter(new SectorTermsAdapter(R.color.colorSectorYellowPrimary));
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_yellow);
         LinearLayoutManager verticalLinearLayoutManager = new LinearLayoutManager(this, VERTICAL, false);
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
@@ -74,6 +48,11 @@ public class ActivitySectorYellow extends BaseActivitySector {
     protected void bindDataToUI(List<SectorTerm> sectorTerms) {
         SectorTermsAdapter adapter = (SectorTermsAdapter) binding.rcSectorTerms.getAdapter();
         adapter.setData(sectorTerms);
+    }
+
+    @Override
+    void checkEmpty() {
+        binding.progressBar.setVisibility(getSectorTermsAdapter().getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
 }
