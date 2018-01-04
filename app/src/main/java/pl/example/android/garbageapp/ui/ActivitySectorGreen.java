@@ -4,6 +4,8 @@ import android.databinding.DataBindingUtil;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.List;
 
@@ -17,7 +19,6 @@ import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 public class ActivitySectorGreen extends BaseActivitySector {
 
     private ActivitySectorGreenBinding binding;
-
     @Override
     protected FragmentActivity currentSector() {
         return this;
@@ -31,11 +32,11 @@ public class ActivitySectorGreen extends BaseActivitySector {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setSectorTermsAdapter(new SectorTermsAdapter(R.color.colorSectorGreenPrimary));
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_green);
-        SectorTermsAdapter sectorTermsAdapter = new SectorTermsAdapter(R.color.colorSectorGreenPrimary);
         LinearLayoutManager verticalLinearLayoutManager = new LinearLayoutManager(this, VERTICAL, false);
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
-        binding.rcSectorTerms.setAdapter(sectorTermsAdapter);
+        binding.rcSectorTerms.setAdapter(getSectorTermsAdapter());
         binding.notificationSwitch.setOnClickListener(this::markForNotification);
 
         if(isMarkedForNotification())
@@ -47,5 +48,10 @@ public class ActivitySectorGreen extends BaseActivitySector {
     protected void bindDataToUI(List<SectorTerm> sectorTerms) {
         SectorTermsAdapter adapter = (SectorTermsAdapter) binding.rcSectorTerms.getAdapter();
         adapter.setData(sectorTerms);
+    }
+
+    @Override
+    void checkEmpty() {
+        binding.progressBar.setVisibility(getSectorTermsAdapter().getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 }
