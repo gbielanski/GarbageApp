@@ -88,7 +88,7 @@ public class SectorTermsDatabaseDataSource {
 
         Log.d(LOG_TAG, "Sector terms counted: " + count + ". Notifying user");
         for (int notificationId = 0; notificationId < count; notificationId++) {
-            NotificationUtils.showNotification(mContext, notificationId, msg);
+            NotificationUtils.showNotification(mContext, notificationId, notificationSectorColor);
         }
     }
 
