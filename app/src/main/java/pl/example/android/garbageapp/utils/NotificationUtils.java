@@ -14,6 +14,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
 import pl.example.android.garbageapp.R;
+import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.ui.ActivitySectorBlue;
 import pl.example.android.garbageapp.ui.ActivitySectorGreen;
 import pl.example.android.garbageapp.ui.ActivitySectorYellow;
@@ -76,7 +77,7 @@ public class NotificationUtils {
     }
 
     private static CharSequence contentText(Context context) {
-        return context.getString(R.string.notification_message_content);
+        return context.getString(R.string.tomorrow_garbage_collection_msg);
     }
 
     private static Bitmap largeIcon(Context context) {
@@ -86,10 +87,10 @@ public class NotificationUtils {
     }
 
     private static Class whichActivityToStart(int notificationSectorColor) {
-        switch (notificationSectorColor) {
-            case 1 : return ActivitySectorGreen.class;
-            case 2 : return ActivitySectorBlue.class;
-            case 3 : return ActivitySectorYellow.class;
+        switch (SectorColor.valueOf(notificationSectorColor)) {
+            case GREEN : return ActivitySectorGreen.class;
+            case BLUE:  return ActivitySectorBlue.class;
+            case YELLOW: return ActivitySectorYellow.class;
             default: return MainActivity.class;
         }
     }
