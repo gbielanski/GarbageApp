@@ -13,5 +13,4 @@
     <string name="tomorrow_garbage_collection_msg">Jutro wywóz śmieci</string>
     <string name="main_notification_channel_name">Primary</string>
     <string name="notification_message_title">Informacja</string>
-    <string name="notification_message_content">Jutro wywóz smieci</string>
 </resources>

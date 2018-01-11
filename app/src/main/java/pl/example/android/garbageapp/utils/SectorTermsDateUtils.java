@@ -19,6 +19,17 @@ public class SectorTermsDateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
         calendar.add(Calendar.DATE, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        Date tomorrow = calendar.getTime();
+        return tomorrow;
+    }
+
+    public static Date getNormalizedUtcDateForToday() {
+        long normalizedMilli = getNormalizedUtcMsForToday();
+        Date today = new Date(normalizedMilli);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
         Date tomorrow = calendar.getTime();
         return tomorrow;
     }

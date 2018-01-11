@@ -14,6 +14,7 @@ import pl.example.android.garbageapp.data.database.SectorTermsDatabaseDataSource
 
 import pl.example.android.garbageapp.data.network.SectorTermsNetworkDataSource;
 import pl.example.android.garbageapp.utils.AppExecutors;
+import pl.example.android.garbageapp.utils.SectorTermsDateUtils;
 
 /**
  * Created by miltomasz on 03/11/17.
@@ -96,7 +97,7 @@ public class SectorTermRepository {
 
     public LiveData<List<SectorTerm>> getCurrentSectorTerms(SectorColor sectorColor) {
         initializeData();
-        Date today = new Date();
+        Date today = SectorTermsDateUtils.getNormalizedUtcDateForToday();
         return mSectorTermDao.getFutureSectorTerms(today, SectorColor.toInt(sectorColor));
     }
 }
