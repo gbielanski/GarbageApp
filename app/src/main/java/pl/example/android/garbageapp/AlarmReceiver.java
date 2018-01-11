@@ -19,8 +19,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                 Log.d(LOG_TAG, action);
                 NotificationUtils.scheduleSectorTermsNotification(context);
             }
-
         }
-
     }
 }
