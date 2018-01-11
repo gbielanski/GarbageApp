@@ -23,11 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.data.database.SectorTerm;
-
 import pl.example.android.garbageapp.data.network.model.SectorData;
-
 import pl.example.android.garbageapp.utils.AppExecutors;
 
 /**

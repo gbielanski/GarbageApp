@@ -11,4 +11,6 @@
     <string name="setup_notification">Przypomnienie ustawione dla <xliff:g id="sector" example="SEKTOR I ZIELONY">%s</xliff:g></string>
     <string name="remove_notification">Przypomnienie dla <xliff:g id="sector" example="SEKTOR I ZIELONY">%s</xliff:g> usunięte</string>
     <string name="tomorrow_garbage_collection_msg">Jutro wywóz śmieci</string>
+    <string name="main_notification_channel_name">Primary</string>
+    <string name="notification_message_title">Informacja</string>
 </resources>

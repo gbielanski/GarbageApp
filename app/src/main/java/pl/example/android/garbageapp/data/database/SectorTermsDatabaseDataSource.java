@@ -1,15 +1,10 @@
 package pl.example.android.garbageapp.data.database;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import pl.example.android.garbageapp.R;
@@ -72,7 +67,7 @@ public class SectorTermsDatabaseDataSource {
 
         Log.d(LOG_TAG, "Sector terms counted: " + count + ". Notifying user");
         for (int notificationId = 0; notificationId < count; notificationId++) {
-            NotificationUtils.showNotification(mContext, notificationId, msg);
+            NotificationUtils.showNotification(mContext, notificationId, notificationSectorColor);
         }
     }
 
