@@ -1,15 +1,10 @@
 package pl.example.android.garbageapp.data.database;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import pl.example.android.garbageapp.R;
@@ -25,8 +20,7 @@ import pl.example.android.garbageapp.utils.SectorTermsDateUtils;
 public class SectorTermsDatabaseDataSource {
 
     private static final String LOG_TAG = SectorTermsDatabaseDataSource.class.getSimpleName();
-    private static final int SIX_PM = 18;
-    private static final int ZERO = 00;
+
 
     private static final Object LOCK = new Object();
     private static SectorTermsDatabaseDataSource sInstance;
@@ -58,21 +52,6 @@ public class SectorTermsDatabaseDataSource {
     }
 
     /**
-     * Sets up {@code {@link AlarmManager}} which fires off service
-     * {@code {@link SectorTermNotificationIntentService}} once a day.
-     */
-    public void scheduleCountingSectorTermsForNotification() {
-        Log.d(LOG_TAG, "Schedule alarm manager for counting sector terms");
-        Intent intent = new Intent(mContext, SectorTermNotificationIntentService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(mContext, 0, intent, 0 );
-        AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        Calendar calendar = getCalendarForNotification();
-        // set up alarm manager to repeat
-        alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
-                 pendingIntent);
-    }
-
-    /**
      * Uses dao object to retrieve number of sector terms which should be processed next day.
      */
     public void countSectorTermsForNotification() {
@@ -92,20 +71,7 @@ public class SectorTermsDatabaseDataSource {
         }
     }
 
-    /**
-     * Prepares exact date (hours, minutes, seconds) for {@code {@link AlarmManager}}
-     * @return date represented as {@code {@link Calendar}}
-     */
-    @NonNull
-    private Calendar getCalendarForNotification() {
-        // set the alarm to start at approximately 6:00 p.m.
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, SIX_PM);
-        calendar.set(Calendar.MINUTE, ZERO);
-        calendar.set(Calendar.SECOND, ZERO);
-        Log.d(LOG_TAG, "Alarm manager time scheduled for: "
-                + SectorTermsDateUtils.getNextAlarmTime(calendar.getTimeInMillis()));
-        return calendar;
+    public void scheduleCountingSectorTermsForNotification() {
+        NotificationUtils.scheduleSectorTermsNotification(mContext);
     }
 }
