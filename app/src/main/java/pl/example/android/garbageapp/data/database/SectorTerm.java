@@ -64,7 +64,6 @@ public class SectorTerm {
         return simpleDateFormat.format(term);
     }
 
-    //TODO extract outside and use getString from resources
     public String getTermTypeString(Context context) {
         switch (termType) {
             case MIXED:
