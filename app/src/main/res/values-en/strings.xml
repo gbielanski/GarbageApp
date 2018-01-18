@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Garbage App</string>
+    <string name="main_appbar_desc">SCHEDULE OF GARBAGE RECEPTION IN ZIELONKA TOWN</string>
+    <string name="sector_1">SECTOR I</string>
+    <string name="sector_1_desc">NORTHERN ZIELONKA FROM RAILROAD TRACKS TOWARDS MARKI TOWN</string>
+    <string name="sector_2">SECTOR II</string>
+    <string name="sector_2_desc">ZIELONKA CENTRAL FROM RAILROAD TRACKS TOWARDS STREETS WYSZYŃSKIEGO, PONIATOWSKIEGO, POŁUDNIOWA AND WĄSKA</string>
+    <string name="sector_3">SECTOR III</string>
+    <string name="sector_3_desc">SOUTHERN ZIELONKA FROM WYSZYŃSKIEGO STREET (INCLUDING) TOWARDS REMBERTÓW</string>
+    <string name="remind">REMINDER</string>
+    <string name="setup_notification">Reminder set for <xliff:g example="SECTOR I GREEN" id="sector">%s</xliff:g></string>
+    <string name="remove_notification">Reminder for <xliff:g example="SECTOR I GREEN" id="sector">%s</xliff:g> deleted</string>
+    <string name="tomorrow_garbage_collection_msg">Tomorrow, garbage reception</string>
+    <string name="notification_message_title">Information</string>
+    <string name="TYPE_MIXED_DESC">mixed</string>
+    <string name="TYPE_SEG_DESC">segregated</string>
+    <string name="TYPE_BIO_DESC">biodegradable</string>
+</resources>
