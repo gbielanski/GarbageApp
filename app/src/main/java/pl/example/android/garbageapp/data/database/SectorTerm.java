@@ -4,12 +4,14 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+import android.content.Context;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import pl.example.android.garbageapp.R;
 import pl.example.android.garbageapp.data.network.model.SectorData;
 import pl.example.android.garbageapp.utilities.SectorTermsUtil;
 
@@ -55,21 +57,21 @@ public class SectorTerm {
         this.sectorColor = SectorColor.toSectorColor(color);
     }
 
-    public String getTermString() {
+    public String getTermString(Context context) {
+        Locale locale = context.getResources().getConfiguration().locale;
         String dateFormat = "EEEE, d MMMM yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, new Locale("pl", "PL"));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, locale);
         return simpleDateFormat.format(term);
     }
 
-    //TODO extract outside and use getString from resources
-    public String getTermTypeString() {
+    public String getTermTypeString(Context context) {
         switch (termType) {
             case MIXED:
-                return "zmieszane";
+                return context.getString(R.string.TYPE_MIXED_DESC);
             case SEGREGATED:
-                return "segregowane";
+                return context.getString(R.string.TYPE_SEG_DESC);
             case BIO:
-                return "biodegradowalne";
+                return context.getString(R.string.TYPE_BIO_DESC);
             default:
                 return "UNKNOWN";
         }
