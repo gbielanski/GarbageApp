@@ -7,10 +7,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -38,8 +40,10 @@ public class NotificationUtils {
     public static final String NOTIFICATION_SECTOR_COLOR = "NOTIFICATION_SECTOR_COLOR";
     private static final String GARBAGE_APP_NOTIFICATION_CHANNEL_ID = "garbage-app-channel";
     private static final int GARBAGE_APP_PENDING_INTENT_ID = 1234;
+    public static final String LAST_NOTIFICATION_DATE = "LAST NOTIFICATION DATE";
 
-    private NotificationUtils() {}
+    private NotificationUtils() {
+    }
 
     public static void showNotification(Context context, int notificationId, int notificationSectorColor) {
         NotificationManager notificationManager =
@@ -68,7 +72,14 @@ public class NotificationUtils {
                 && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
         }
-        notificationManager.notify(notificationId, notificationBuilder.build());
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (sharedPreferences.getLong(LAST_NOTIFICATION_DATE, 0) < SectorTermsDateUtils.getNormalizedUtcDateForToday().getTime()) {
+            notificationManager.notify(notificationId, notificationBuilder.build());
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            edit.putLong(LAST_NOTIFICATION_DATE, SectorTermsDateUtils.getNormalizedUtcDateForToday().getTime());
+            edit.apply();
+        }
     }
 
 
@@ -112,7 +123,7 @@ public class NotificationUtils {
     public static void scheduleSectorTermsNotification(Context context) {
         Log.d("NotificationUtils", "Schedule alarm manager for counting sector terms");
         Intent intent = new Intent(context.getApplicationContext(), SectorTermNotificationIntentService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(context.getApplicationContext(), 0, intent, 0 );
+        PendingIntent pendingIntent = PendingIntent.getService(context.getApplicationContext(), 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) context.getApplicationContext().getSystemService(Context.ALARM_SERVICE);
         Calendar calendar = getCalendarForNotification();
         // set up alarm manager to repeat
@@ -122,6 +133,7 @@ public class NotificationUtils {
 
     /**
      * Prepares exact date (hours, minutes, seconds) for {@code {@link AlarmManager}}
+     *
      * @return date represented as {@code {@link Calendar}}
      */
     @NonNull
