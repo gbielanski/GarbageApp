@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -82,16 +83,18 @@ public abstract class BaseActivitySector extends AppCompatActivity {
         return notificationSectorColor == SectorColor.toInt(sectorColor());
     }
 
-    protected void markForNotification(View view) {
+    protected void markForNotification(CompoundButton buttonView, boolean isChecked) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(currentSector());
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(NotificationUtils.NOTIFICATION_SECTOR_COLOR, SectorColor.toInt(sectorColor()));
-        editor.apply();
-        if (((Switch) view).isChecked())
-            Toast.makeText(currentSector(), getString(R.string.setup_notification, sectorColor().toString()), Toast.LENGTH_LONG).show();
-        else
-            Toast.makeText(currentSector(), getString(R.string.remove_notification, sectorColor().toString()), Toast.LENGTH_LONG).show();
 
+        if (isChecked) {
+            editor.putInt(NotificationUtils.NOTIFICATION_SECTOR_COLOR, SectorColor.toInt(sectorColor()));
+            Toast.makeText(currentSector(), getString(R.string.setup_notification, sectorColor().toString()), Toast.LENGTH_LONG).show();
+        }else {
+            editor.putInt(NotificationUtils.NOTIFICATION_SECTOR_COLOR, SectorColor.toInt(SectorColor.UNSET));
+            Toast.makeText(currentSector(), getString(R.string.remove_notification, sectorColor().toString()), Toast.LENGTH_LONG).show();
+        }
+        editor.apply();
     }
 
     @Override
