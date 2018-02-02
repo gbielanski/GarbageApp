@@ -2,15 +2,12 @@ package pl.example.android.garbageapp.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.List;
@@ -83,18 +80,26 @@ public abstract class BaseActivitySector extends AppCompatActivity {
         return notificationSectorColor == SectorColor.toInt(sectorColor());
     }
 
-    protected void markForNotification(CompoundButton buttonView, boolean isChecked) {
+    private void changeReminderForSectorColor(SectorColor sectorColor){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(currentSector());
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        if (isChecked) {
-            editor.putInt(NotificationUtils.NOTIFICATION_SECTOR_COLOR, SectorColor.toInt(sectorColor()));
-            Toast.makeText(currentSector(), getString(R.string.setup_notification, sectorColor().toString()), Toast.LENGTH_LONG).show();
-        }else {
-            editor.putInt(NotificationUtils.NOTIFICATION_SECTOR_COLOR, SectorColor.toInt(SectorColor.UNSET));
-            Toast.makeText(currentSector(), getString(R.string.remove_notification, sectorColor().toString()), Toast.LENGTH_LONG).show();
-        }
+        editor.putInt(NotificationUtils.NOTIFICATION_SECTOR_COLOR, SectorColor.toInt(sectorColor));
         editor.apply();
+    }
+
+    protected void markForNotification(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            changeReminderForSectorColor(sectorColor());
+            notifyUserReminderHasChanged(R.string.setup_notification);
+
+        }else {
+            changeReminderForSectorColor(SectorColor.UNSET);
+            notifyUserReminderHasChanged(R.string.remove_notification);
+        }
+    }
+
+    private void notifyUserReminderHasChanged(int notificationMessage) {
+        Toast.makeText(currentSector(), getString(notificationMessage, sectorColor().toString()), Toast.LENGTH_LONG).show();
     }
 
     @Override
