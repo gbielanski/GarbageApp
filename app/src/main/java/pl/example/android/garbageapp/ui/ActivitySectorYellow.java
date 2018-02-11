@@ -38,10 +38,11 @@ public class ActivitySectorYellow extends BaseActivitySector {
         LinearLayoutManager verticalLinearLayoutManager = new LinearLayoutManager(this, VERTICAL, false);
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
         binding.rcSectorTerms.setAdapter(getSectorTermsAdapter());
-        binding.notificationSwitch.setOnClickListener(this::markForNotification);
 
         if(isMarkedForNotification())
             binding.notificationSwitch.setChecked(true);
+
+        binding.notificationSwitch.setOnCheckedChangeListener(this::markForNotification);
     }
 
     @Override
