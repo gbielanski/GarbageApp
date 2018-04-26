@@ -72,6 +72,6 @@ public class SectorTermsDatabaseDataSource {
     }
 
     public void scheduleCountingSectorTermsForNotification() {
-        NotificationUtils.scheduleSectorTermsNotification(mContext);
+        NotificationUtils.scheduleNotificationIntentServiceTriggering(mContext);
     }
 }

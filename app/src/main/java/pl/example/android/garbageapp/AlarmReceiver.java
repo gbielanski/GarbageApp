@@ -17,7 +17,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             if(action.equals("android.intent.action.BOOT_COMPLETED") ||
                     action.equals("android.intent.action.QUICKBOOT_POWERON")){
                 Log.d(LOG_TAG, action);
-                NotificationUtils.scheduleSectorTermsNotification(context);
+                NotificationUtils.scheduleNotificationIntentServiceTriggering(context);
             }
         }
     }

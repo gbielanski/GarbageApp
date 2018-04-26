@@ -2,10 +2,12 @@ package pl.example.android.garbageapp.data.database;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import pl.example.android.garbageapp.utils.InjectorUtils;
+import pl.example.android.garbageapp.utils.NotificationUtils;
 
 /**
  * Service class fired off by {@code {@link android.app.AlarmManager}} every day a given time.
@@ -28,5 +30,8 @@ public class SectorTermNotificationIntentService extends IntentService {
         SectorTermsDatabaseDataSource sectorTermsDatabaseDataSource =
                 InjectorUtils.provideDatabaseDataSource(getApplicationContext());
         sectorTermsDatabaseDataSource.countSectorTermsForNotification();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            NotificationUtils.scheduleNotificationIntentServiceTriggering(getApplicationContext());
+        }
     }
 }

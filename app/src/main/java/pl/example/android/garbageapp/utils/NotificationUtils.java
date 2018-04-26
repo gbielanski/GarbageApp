@@ -120,15 +120,19 @@ public class NotificationUtils {
         }
     }
 
-    public static void scheduleSectorTermsNotification(Context context) {
+    public static void scheduleNotificationIntentServiceTriggering(Context context) {
         Log.d("NotificationUtils", "Schedule alarm manager for counting sector terms");
         Intent intent = new Intent(context.getApplicationContext(), SectorTermNotificationIntentService.class);
         PendingIntent pendingIntent = PendingIntent.getService(context.getApplicationContext(), 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) context.getApplicationContext().getSystemService(Context.ALARM_SERVICE);
         Calendar calendar = getCalendarForNotification();
         // set up alarm manager to repeat
-        alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
-                pendingIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        } else {
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+        }
     }
 
     /**
