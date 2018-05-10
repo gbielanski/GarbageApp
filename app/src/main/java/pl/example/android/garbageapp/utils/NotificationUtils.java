@@ -145,6 +145,7 @@ public class NotificationUtils {
         // set the alarm to start at approximately 6:00 p.m.
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
         calendar.set(Calendar.HOUR_OF_DAY, SIX_PM);
         calendar.set(Calendar.MINUTE, ZERO);
         calendar.set(Calendar.SECOND, ZERO);
