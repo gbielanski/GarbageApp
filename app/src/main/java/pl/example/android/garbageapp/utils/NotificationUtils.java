@@ -107,7 +107,7 @@ public class NotificationUtils {
         return largeIcon;
     }
 
-    private static Class whichActivityToStart(int notificationSectorColor) {
+    public static Class whichActivityToStart(int notificationSectorColor) {
         switch (SectorColor.valueOf(notificationSectorColor)) {
             case GREEN:
                 return ActivitySectorGreen.class;

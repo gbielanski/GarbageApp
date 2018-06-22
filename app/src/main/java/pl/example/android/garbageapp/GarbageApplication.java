@@ -12,6 +12,8 @@ public class GarbageApplication extends Application {
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)
+                .setNotificationOpenedHandler(new ExampleNotificationOpenedHandler(this))
+                .setNotificationReceivedHandler(new GarbageNotificationReceivedHandler(this))
                 .init();
     }
 }
