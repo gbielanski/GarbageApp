@@ -19,7 +19,7 @@
             android:layout_marginEnd="@dimen/medium_margin"
             android:layout_marginStart="@dimen/medium_margin"
             android:layout_marginBottom="@dimen/medium_margin"
-            android:text="@string/main_appbar_desc"
+            android:text="@string/main_header_desc"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
     </android.support.design.widget.AppBarLayout>
@@ -41,7 +41,7 @@
             android:padding="@dimen/medium_padding"
             android:gravity="center_vertical"
             android:onClick="onClickSectorGreenDetails"
-            android:id="@+id/sector_3_green">
+            android:id="@+id/sector_2_deep_purple">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
             android:padding="@dimen/medium_padding"
             android:gravity="center_vertical"
             android:onClick="onClickSectorYellowDetails"
-            android:id="@+id/sector_4_amber">
+            android:id="@+id/sector_6_deep_orange">
           
             <TextView
                 android:layout_width="wrap_content"
