@@ -8,8 +8,8 @@ android {
         applicationId "pl.example.android.garbageapp"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 6
-        versionName "20190331"
+        versionCode 7
+        versionName "20190428"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
