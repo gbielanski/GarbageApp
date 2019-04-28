@@ -28,7 +28,7 @@ public class MainActivityTestLandscape {
     @Test
     public void showGreenSectorDetailsOnSectorGreenClickInLandscape() {
         mActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        onView(withId(R.id.sector_green)).perform(click());
+        onView(withId(R.id.sector_3_green)).perform(click());
         onView(withId(R.id.main_content_sector_green)).check(matches(isDisplayed()));
     }
 
@@ -44,7 +44,7 @@ public class MainActivityTestLandscape {
     @Test
     public void showYellowSectorDetailsOnSectorYellowClickInLandscape() {
         mActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        onView(withId(R.id.sector_yellow)).perform(click());
+        onView(withId(R.id.sector_4_amber)).perform(click());
         onView(withId(R.id.main_content_sector_yellow)).check(matches(isDisplayed()));
     }
 

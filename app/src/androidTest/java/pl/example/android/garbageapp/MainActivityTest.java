@@ -1,17 +1,10 @@
 package pl.example.android.garbageapp;
 
 
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +28,7 @@ public class MainActivityTest {
     @Test
     public void showGreenSectorDetailsOnSectorGreenClick() {
 
-        onView(withId(R.id.sector_green)).perform(click());
+        onView(withId(R.id.sector_3_green)).perform(click());
         onView(withId(R.id.main_content_sector_green)).check(matches(isDisplayed()));
     }
 
@@ -49,7 +42,7 @@ public class MainActivityTest {
     @Test
     public void showYellowSectorDetailsOnSectorYellowClick() {
 
-        onView(withId(R.id.sector_yellow)).perform(click());
+        onView(withId(R.id.sector_4_amber)).perform(click());
         onView(withId(R.id.main_content_sector_yellow)).check(matches(isDisplayed()));
     }
 
