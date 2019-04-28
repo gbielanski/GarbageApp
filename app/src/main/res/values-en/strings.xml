@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Garbage App</string>
-    <string name="main_appbar_desc">SCHEDULE OF GARBAGE RECEPTION IN ZIELONKA TOWN</string>
+    <string name="main_header_desc">SCHEDULE OF GARBAGE RECEPTION IN ZIELONKA TOWN</string>
     <string name="sector_1">SECTOR 1</string>
     <string name="sector_1_desc">NORTHERN ZIELONKA FROM RAILROAD TRACKS TOWARDS MARKI TOWN</string>
     <string name="sector_2">SECTOR 2</string>

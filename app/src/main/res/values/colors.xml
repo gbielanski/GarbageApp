@@ -6,4 +6,13 @@
     <color name="colorSectorGreenPrimary">#8bc34a</color>
     <color name="colorSectorBluePrimary">#03a9f4</color>
     <color name="colorSectorYellowPrimary">#FFC107</color>
+    <color name="header_background">#388E3C</color>
+    <color name="sectorPink">#E91E63</color>
+    <color name="sectorDeepPurple">#673AB7</color>
+    <color name="sectorGreen">#4CAF50</color>
+    <color name="sectorAmber">#FFC107</color>
+    <color name="sectorOrange">#FF9800</color>
+    <color name="sectorDeepOrange">#FF5722</color>
+    <color name="sectorPurple">#9C27B0</color>
+    <color name="sectorIndigo">#3F51B5</color>
 </resources>

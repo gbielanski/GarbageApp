@@ -1,6 +1,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Wystaw Śmieci</string>
-    <string name="main_appbar_desc">HARMONOGRAM ODBIORU ODPADÓW W ZIELONCE</string>
+    <string name="main_header_desc">HARMONOGRAM ODBIORU ODPADÓW W ZIELONCE</string>
     <string name="sector_1">SEKTOR 1</string>
     <string name="sector_2">SEKTOR 2</string>
     <string name="sector_3">SEKTOR 3</string>

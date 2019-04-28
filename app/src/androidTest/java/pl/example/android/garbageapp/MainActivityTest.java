@@ -28,7 +28,7 @@ public class MainActivityTest {
     @Test
     public void showGreenSectorDetailsOnSectorGreenClick() {
 
-        onView(withId(R.id.sector_3_green)).perform(click());
+        onView(withId(R.id.sector_2_deep_purple)).perform(click());
         onView(withId(R.id.main_content_sector_green)).check(matches(isDisplayed()));
     }
 
@@ -42,7 +42,7 @@ public class MainActivityTest {
     @Test
     public void showYellowSectorDetailsOnSectorYellowClick() {
 
-        onView(withId(R.id.sector_4_amber)).perform(click());
+        onView(withId(R.id.sector_6_deep_orange)).perform(click());
         onView(withId(R.id.main_content_sector_yellow)).check(matches(isDisplayed()));
     }
 
