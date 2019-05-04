@@ -25,6 +25,7 @@
         <activity android:name=".ui.ActivitySectorBlue" />
         <activity android:name=".ui.ActivitySectorYellow" />
         <activity android:name=".ui.ActivitySectorPink" />
+        <activity android:name=".ui.ActivitySectorDeepPurple" />
         <!--This is required for immediate syncs -->
         <service
             android:name=".data.network.SectorTermSyncIntentService"
