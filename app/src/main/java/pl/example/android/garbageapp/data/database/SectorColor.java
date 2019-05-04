@@ -17,19 +17,25 @@ public enum SectorColor {
             return "SEKTOR 1 RÓŻOWY";
         }
     },
-    BLUE(2) {
+    DEEP_PURPLE(2) {
+        @Override
+        public String toString() {
+            return "SEKTOR 2 CIEMNO FIOLETOWY";
+        }
+    },
+    BLUE(3) {
         @Override
         public String toString() {
             return "SEKTOR 2 NIEBIESKI";
         }
     },
-    YELLOW(3) {
+    YELLOW(4) {
         @Override
         public String toString() {
             return "SEKTOR 3 ŻÓŁTY";
         }
     },
-    GREEN(4) {
+    GREEN(5) {
         @Override
         public String toString() {
             return "SEKTOR 4 ZIELONY";
@@ -60,8 +66,9 @@ public enum SectorColor {
 
     public static SectorColor toSectorColor(String color) {
         switch (color) {
-            case "blue" : return BLUE;
             case "pink" : return PINK;
+            case "deep_purple" : return DEEP_PURPLE;
+            case "blue" : return BLUE;
             case "yellow" : return YELLOW;
             case "green" : return GREEN;
             default: return UNSET;

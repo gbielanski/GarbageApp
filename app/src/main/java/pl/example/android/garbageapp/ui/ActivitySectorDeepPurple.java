@@ -12,13 +12,14 @@ import java.util.List;
 import pl.example.android.garbageapp.R;
 import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.data.database.SectorTerm;
+import pl.example.android.garbageapp.databinding.ActivitySectorDeepPurpleBinding;
 import pl.example.android.garbageapp.databinding.ActivitySectorPinkBinding;
 
 import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
-public class ActivitySectorPink extends BaseActivitySector {
+public class ActivitySectorDeepPurple extends BaseActivitySector {
 
-    private ActivitySectorPinkBinding binding;
+    private ActivitySectorDeepPurpleBinding binding;
     @Override
     protected FragmentActivity currentSector() {
         return this;
@@ -26,14 +27,14 @@ public class ActivitySectorPink extends BaseActivitySector {
 
     @Override
     protected SectorColor sectorColor() {
-        return SectorColor.PINK;
+        return SectorColor.DEEP_PURPLE;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setSectorTermsAdapter(new SectorTermsAdapter(R.color.sectorPink));
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_pink);
+        setSectorTermsAdapter(new SectorTermsAdapter(R.color.sectorDeepPurple));
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_deep_purple);
         LinearLayoutManager verticalLinearLayoutManager = new LinearLayoutManager(this, VERTICAL, false);
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
         binding.rcSectorTerms.setAdapter(getSectorTermsAdapter());
