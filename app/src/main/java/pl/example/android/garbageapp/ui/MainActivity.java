@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickSectorAmberDetails(View view) {
         animateCircularReveal(view);
-        startSectorGreenDetails();
+        startSectorAmberDetails();
     }
 
     public void onClickSectorOrangeDetails(View view) {
@@ -86,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void startSectorGreenDetails() {
         Intent intent = new Intent(MainActivity.this, ActivitySectorGreen.class);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+
+    private void startSectorAmberDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorAmber.class);
         Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
         startActivity(intent, bundle);
     }
