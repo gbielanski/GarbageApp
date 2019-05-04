@@ -40,6 +40,12 @@ public enum SectorColor {
             return "SEKTOR 5 ORANGE";
         }
     },
+    DEEP_ORANGE(6) {
+        @Override
+        public String toString() {
+            return "SEKTOR 5 DEEP ORANGE";
+        }
+    },
     BLUE(30) {
         @Override
         public String toString() {
@@ -52,7 +58,6 @@ public enum SectorColor {
             return "SEKTOR 3 ŻÓŁTY";
         }
     };
-
 
     private int sectorTypeValue;
 
@@ -83,6 +88,7 @@ public enum SectorColor {
             case "green" : return GREEN;
             case "amber" : return AMBER;
             case "orange" : return ORANGE;
+            case "deep_orange" : return DEEP_ORANGE;
 
             case "blue" : return BLUE;
             case "yellow" : return YELLOW;
