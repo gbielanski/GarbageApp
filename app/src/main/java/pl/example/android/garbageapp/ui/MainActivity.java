@@ -23,12 +23,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_eight_sectors);
     }
 
-    public void showToast(View view) {
-        Toast.makeText(this, "Przypomnienie ustawione dla STREFY III", Toast.LENGTH_LONG).show();
-    }
     public void onClickSectorPinkDetails(View view) {
         animateCircularReveal(view);
-        startSectorGreenDetails();
+        startSectorPinkDetails();
     }
 
     public void onClickSectorDeepPurpleDetails(View view) {
@@ -66,20 +63,6 @@ public class MainActivity extends AppCompatActivity {
         startSectorGreenDetails();
     }
 
-    //TODO remove below
-
-    public void onClickSectorBlueDetails(View view) {
-        animateCircularReveal(view);
-        startSectorBlueDetails();
-    }
-
-    public void onClickSectorYellowDetails(View view) {
-        animateCircularReveal(view);
-        startSectorYellowDetails();
-    }
-
-    //----
-
     private void animateCircularReveal(View view) {
         int finalRadius = (int) Math.hypot(view.getWidth() / 2, view.getHeight() / 2);
         Animator anim = ViewAnimationUtils.createCircularReveal(view,
@@ -87,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
                 (int) view.getHeight() / 2,
                 0, finalRadius);
         anim.start();
+    }
+
+    private void startSectorPinkDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorPink.class);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
     }
 
     private void startSectorGreenDetails() {
