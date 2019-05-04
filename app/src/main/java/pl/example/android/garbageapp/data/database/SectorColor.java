@@ -3,7 +3,6 @@ package pl.example.android.garbageapp.data.database;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public enum SectorColor {
     UNSET(0) {
         @Override
@@ -26,7 +25,13 @@ public enum SectorColor {
     GREEN(3) {
         @Override
         public String toString() {
-            return "SEKTOR 4 ZIELONY";
+            return "SEKTOR 3 ZIELONY";
+        }
+    },
+    AMBER(4) {
+        @Override
+        public String toString() {
+            return "SEKTOR 4 AMBER";
         }
     },
     BLUE(30) {
@@ -70,6 +75,7 @@ public enum SectorColor {
             case "pink" : return PINK;
             case "deep_purple" : return DEEP_PURPLE;
             case "green" : return GREEN;
+            case "amber" : return AMBER;
 
 
             case "blue" : return BLUE;
