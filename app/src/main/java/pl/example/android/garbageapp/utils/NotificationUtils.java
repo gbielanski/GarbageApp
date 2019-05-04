@@ -25,6 +25,7 @@ import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.data.database.SectorTermNotificationIntentService;
 import pl.example.android.garbageapp.ui.ActivitySectorBlue;
 import pl.example.android.garbageapp.ui.ActivitySectorGreen;
+import pl.example.android.garbageapp.ui.ActivitySectorPink;
 import pl.example.android.garbageapp.ui.ActivitySectorYellow;
 import pl.example.android.garbageapp.ui.MainActivity;
 
@@ -68,8 +69,7 @@ public class NotificationUtils {
                         .setDefaults(Notification.DEFAULT_ALL)
                         .setAutoCancel(true);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
-                && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
         }
 
@@ -109,8 +109,8 @@ public class NotificationUtils {
 
     private static Class whichActivityToStart(int notificationSectorColor) {
         switch (SectorColor.valueOf(notificationSectorColor)) {
-            case GREEN:
-                return ActivitySectorGreen.class;
+            case PINK:
+                return ActivitySectorPink.class;
             case BLUE:
                 return ActivitySectorBlue.class;
             case YELLOW:
