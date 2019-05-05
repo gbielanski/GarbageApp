@@ -33,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
         startSectorDeepPurpleDetails();
     }
 
+    public void onClickSectorGreenDetails(View view) {
+        animateCircularReveal(view);
+        startSectorGreenDetails();
+    }
+
     public void onClickSectorAmberDetails(View view) {
         animateCircularReveal(view);
         startSectorAmberDetails();
@@ -48,19 +53,14 @@ public class MainActivity extends AppCompatActivity {
         startSectorDeepOrangeDetails();
     }
 
-    public void onClickSectorGreenDetails(View view) {
-        animateCircularReveal(view);
-        startSectorGreenDetails();
-    }
-
     public void onClickSectorPurpleDetails(View view) {
         animateCircularReveal(view);
-        startSectorGreenDetails();
+        startSectorPurpleDetails();
     }
 
     public void onClickSectorIndigoDetails(View view) {
         animateCircularReveal(view);
-        startSectorGreenDetails();
+        startSectorIndigoDetails();
     }
 
     private void animateCircularReveal(View view) {
@@ -104,6 +104,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void startSectorDeepOrangeDetails() {
         Intent intent = new Intent(MainActivity.this, ActivitySectorDeepOrange.class);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+
+    private void startSectorPurpleDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorPurple.class);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+
+    private void startSectorIndigoDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorIndigo.class);
         Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
         startActivity(intent, bundle);
     }
