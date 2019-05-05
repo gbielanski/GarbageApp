@@ -68,8 +68,12 @@ public class SectorTerm {
         switch (termType) {
             case MIXED:
                 return context.getString(R.string.TYPE_MIXED_DESC);
-            case SEGREGATED:
-                return context.getString(R.string.TYPE_SEG_DESC);
+            case PLASTIC:
+                return context.getString(R.string.TYPE_PLASTIC_DESC);
+            case PAPER:
+                return context.getString(R.string.TYPE_PAPER_DESC);
+            case GLASS:
+                return context.getString(R.string.TYPE_GLASS_DESC);
             case BIO:
                 return context.getString(R.string.TYPE_BIO_DESC);
             default:

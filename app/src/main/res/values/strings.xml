@@ -19,7 +19,9 @@
     <string name="main_notification_channel_name" translatable="false">Primary</string>
     <string name="notification_message_title">Informacja</string>
     <string name="TYPE_MIXED_DESC">zmieszane</string>
-    <string name="TYPE_SEG_DESC">segregowane</string>
+    <string name="TYPE_PLASTIC_DESC">plastiki</string>
+    <string name="TYPE_PAPER_DESC">papiery</string>
     <string name="TYPE_BIO_DESC">biodegradowalne</string>
     <string name="policy">Polityka prywatności</string>
+    <string name="TYPE_GLASS_DESC">szkła</string>
 </resources>
