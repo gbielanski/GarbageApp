@@ -14,7 +14,7 @@
     <string name="tomorrow_garbage_collection_msg">Tomorrow, garbage reception</string>
     <string name="notification_message_title">Information</string>
     <string name="TYPE_MIXED_DESC">mixed</string>
-    <string name="TYPE_SEG_DESC">segregated</string>
+    <string name="TYPE_PLASTIC_DESC">plastic</string>
     <string name="TYPE_BIO_DESC">biodegradable</string>
     <string name="policy">Privacy policy</string>
     <string name="sector_4">SECTOR 4</string>
@@ -22,4 +22,6 @@
     <string name="sector_6">SECTOR 6</string>
     <string name="sector_7">SECTOR 7</string>
     <string name="sector_8">SECTOR 8</string>
+    <string name="TYPE_PAPER_DESC">papers</string>
+    <string name="TYPE_GLASS_DESC">glass</string>
 </resources>

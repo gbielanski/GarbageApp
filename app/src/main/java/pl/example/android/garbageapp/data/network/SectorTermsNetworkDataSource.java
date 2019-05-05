@@ -42,7 +42,7 @@ public class SectorTermsNetworkDataSource {
     private static final int SYNC_INTERVAL_HOURS = 12;
     private static final int SYNC_INTERVAL_SECONDS = (int) TimeUnit.HOURS.toSeconds(SYNC_INTERVAL_HOURS);
     private static final int SYNC_FLEXTIME_SECONDS = SYNC_INTERVAL_SECONDS / 12;
-    public static final String ACTUAL_DATA_VERSION = "ver_2017_12_29";
+    public static final String ACTUAL_DATA_VERSION = "ver_2019_05_05";
 
     private static SectorTermsNetworkDataSource sInstance;
     private final AppExecutors mExecutors;

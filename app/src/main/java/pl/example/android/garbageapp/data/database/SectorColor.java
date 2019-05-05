@@ -10,63 +10,63 @@ public enum SectorColor {
         @NonNull
         @Override
         public String toString() {
-            return "SEKTOR NIEZDEFINIOWANY";
+            return "REJON NIEZDEFINIOWANY";
         }
     },
     PINK(1) {
         @NonNull
         @Override
         public String toString() {
-            return "SEKTOR 1 RÓŻOWY";
+            return "REJON 1 RÓŻOWY";
         }
     },
     DEEP_PURPLE(2) {
         @NonNull
         @Override
         public String toString() {
-            return "SEKTOR 2 CIEMNO FIOLETOWY";
+            return "REJON 2 CIEMNO FIOLETOWY";
         }
     },
     GREEN(3) {
         @NonNull
         @Override
         public String toString() {
-            return "SEKTOR 3 ZIELONY";
+            return "REJON 3 ZIELONY";
         }
     },
     AMBER(4) {
         @NonNull
         @Override
         public String toString() {
-            return "SEKTOR 4 AMBER";
+            return "REJON 4 AMBER";
         }
     },
     ORANGE(5) {
         @NonNull
         @Override
         public String toString() {
-            return "SEKTOR 5 ORANGE";
+            return "REJON 5 ORANGE";
         }
     },
     DEEP_ORANGE(6) {
         @NonNull
         @Override
         public String toString() {
-            return "SEKTOR 6 DEEP ORANGE";
+            return "REJON 6 DEEP ORANGE";
         }
     },
     PURPLE(7) {
         @NonNull
         @Override
         public String toString() {
-            return "SEKTOR 7 PURPLE";
+            return "REJON 7 PURPLE";
         }
     },
     INDIGO(8) {
         @NonNull
         @Override
         public String toString() {
-            return "SEKTOR 8 INDIGO";
+            return "REJON 8 INDIGO";
         }
     },
     BLUE(30) {
@@ -116,9 +116,6 @@ public enum SectorColor {
             case "deep_orange" : return DEEP_ORANGE;
             case "purple" : return PURPLE;
             case "indigo" : return INDIGO;
-//---------------
-            case "blue" : return BLUE;
-            case "yellow" : return YELLOW;
             default: return UNSET;
         }
     }

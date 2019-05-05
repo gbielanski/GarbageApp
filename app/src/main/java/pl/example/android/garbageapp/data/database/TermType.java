@@ -5,9 +5,11 @@ import java.util.Map;
 
 public enum TermType {
         MIXED (1),
-        SEGREGATED (2),
-        BIO (3),
-        UNKNOWN(4);
+        PLASTIC (2),
+        PAPER (3),
+        GLASS (4),
+        BIO (5),
+        UNKNOWN(6);
 
     private int termTypeValue;
 
@@ -34,7 +36,9 @@ public enum TermType {
     public static TermType toTermType(String termTypeString) {
         switch (termTypeString) {
             case "MIXED" : return MIXED;
-            case "SEGREGATED" : return SEGREGATED;
+            case "PLASTIC" : return PLASTIC;
+            case "PAPER" : return PAPER;
+            case "GLASS" : return GLASS;
             case "BIO" : return BIO;
             default: return UNKNOWN;
         }
