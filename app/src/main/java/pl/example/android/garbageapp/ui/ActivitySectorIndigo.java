@@ -25,7 +25,7 @@ public class ActivitySectorIndigo extends BaseActivitySector {
 
     @Override
     protected SectorColor sectorColor() {
-        return SectorColor.PINK;
+        return SectorColor.INDIGO;
     }
 
     @Override
