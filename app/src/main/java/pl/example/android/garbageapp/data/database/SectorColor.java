@@ -68,20 +68,6 @@ public enum SectorColor {
         public String toString() {
             return "REJON 8 INDIGO";
         }
-    },
-    BLUE(30) {
-        @NonNull
-        @Override
-        public String toString() {
-            return "SEKTOR 2 NIEBIESKI";
-        }
-    },
-    YELLOW(40) {
-        @NonNull
-        @Override
-        public String toString() {
-            return "SEKTOR 3 ŻÓŁTY";
-        }
     };
 
     private int sectorTypeValue;

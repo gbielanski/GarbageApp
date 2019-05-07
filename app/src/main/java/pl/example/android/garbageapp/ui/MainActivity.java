@@ -120,18 +120,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent, bundle);
     }
 
-    private void startSectorBlueDetails() {
-        Intent intent = new Intent(MainActivity.this, ActivitySectorBlue.class);
-        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
-    }
-
-    private void startSectorYellowDetails() {
-        Intent intent = new Intent(MainActivity.this, ActivitySectorYellow.class);
-        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
-        startActivity(intent, bundle);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
