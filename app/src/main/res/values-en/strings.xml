@@ -16,7 +16,7 @@
     <string name="TYPE_MIXED_DESC">mixed</string>
     <string name="TYPE_PLASTIC_DESC">plastic</string>
     <string name="TYPE_BIO_DESC">biodegradable</string>
-    <string name="policy">Privacy policy</string>
+    <string name="policy"><u>Privacy policy</u></string>
     <string name="sector_4">SECTOR 4</string>
     <string name="sector_5">SECTOR 5</string>
     <string name="sector_6">SECTOR 6</string>
