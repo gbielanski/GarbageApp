@@ -136,15 +136,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/sectorPurple"
         android:onClick="onClickSectorPurpleDetails"
         android:text="@string/sector_7"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sector_8_indigo"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sector_5_orange" />
+        app:layout_constraintTop_toBottomOf="@+id/sector_5_orange"
+        app:layout_constraintBottom_toTopOf="@+id/privacy"/>
 
     <TextView
         android:id="@+id/sector_8_indigo"
@@ -154,13 +153,27 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/sectorIndigo"
         android:onClick="onClickSectorIndigoDetails"
         android:text="@string/sector_8"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sector_7_purple"
-        app:layout_constraintTop_toBottomOf="@+id/sector_6_deep_orange" />
+        app:layout_constraintTop_toBottomOf="@+id/sector_6_deep_orange"
+        app:layout_constraintBottom_toTopOf="@+id/privacy"/>
+
+    <TextView
+        android:id="@+id/privacy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="onClickPolicy"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/policy"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/policy"/>
 </android.support.constraint.ConstraintLayout>

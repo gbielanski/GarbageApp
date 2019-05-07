@@ -120,24 +120,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent, bundle);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.policy:
-                String URL = "https://gbielanski.wixsite.com/wystaw-smieci";
-                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
-                startActivity(myIntent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    public void onClickPolicy(View view) {
+        String URL = "https://gbielanski.wixsite.com/wystaw-smieci";
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+        startActivity(myIntent);
     }
 }
