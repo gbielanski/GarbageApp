@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "556921074182",
+    "firebase_url": "https://wystawsmieci-befde.firebaseio.com",
+    "project_id": "wystawsmieci-befde",
+    "storage_bucket": "wystawsmieci-befde.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556921074182:android:ace6ee4df82d71f4",
+        "android_client_info": {
+          "package_name": "pl.example.android.garbageapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556921074182-e9d5gcole13blt4jubjkf8t6ogbvitup.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk-QfxoDTjiQh-4CWb4s_wzYnuDmc2EiU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
