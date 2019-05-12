@@ -1,25 +1,23 @@
 package pl.example.android.garbageapp.ui;
 
 import android.databinding.DataBindingUtil;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.List;
 
 import pl.example.android.garbageapp.R;
-import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.database.SectorColor;
-import pl.example.android.garbageapp.databinding.ActivitySectorYellowBinding;
+import pl.example.android.garbageapp.data.database.SectorTerm;
+import pl.example.android.garbageapp.databinding.ActivitySectorOrangeBinding;
 
 import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
-public class ActivitySectorYellow extends BaseActivitySector {
+public class ActivitySectorOrange extends BaseActivitySector {
 
-    private ActivitySectorYellowBinding binding;
-
+    private ActivitySectorOrangeBinding binding;
     @Override
     protected FragmentActivity currentSector() {
         return this;
@@ -27,14 +25,14 @@ public class ActivitySectorYellow extends BaseActivitySector {
 
     @Override
     protected SectorColor sectorColor() {
-        return SectorColor.YELLOW;
+        return SectorColor.ORANGE;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setSectorTermsAdapter(new SectorTermsAdapter(R.color.colorSectorYellowPrimary));
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_yellow);
+        setSectorTermsAdapter(new SectorTermsAdapter(R.color.sectorOrange));
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_orange);
         LinearLayoutManager verticalLinearLayoutManager = new LinearLayoutManager(this, VERTICAL, false);
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
         binding.rcSectorTerms.setAdapter(getSectorTermsAdapter());
@@ -43,6 +41,7 @@ public class ActivitySectorYellow extends BaseActivitySector {
             binding.notificationSwitch.setChecked(true);
 
         binding.notificationSwitch.setOnCheckedChangeListener(this::markForNotification);
+
     }
 
     @Override
@@ -55,5 +54,4 @@ public class ActivitySectorYellow extends BaseActivitySector {
     void checkEmpty() {
         binding.progressBar.setVisibility(getSectorTermsAdapter().getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
-
 }

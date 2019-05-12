@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
     <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/main_content_sector_blue"
+        android:id="@+id/main_content_sector_indigo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -26,7 +25,7 @@
                     android:layout_marginEnd="@dimen/medium_margin"
                     android:layout_marginStart="@dimen/medium_margin"
                     android:layout_toStartOf="@id/notification_switch"
-                    android:text="@string/sector_3"
+                    android:text="@string/sector_8"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
                 <Switch
@@ -35,7 +34,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/medium_margin"
-                    android:text="@string/remind" />
+                    android:text="@string/remind"
+                    android:visibility="invisible"/>
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>
 
@@ -54,5 +54,6 @@
                 android:layout_centerInParent="true"
                 android:id="@+id/progress_bar"/>
         </RelativeLayout>
+
     </android.support.design.widget.CoordinatorLayout>
 </layout>

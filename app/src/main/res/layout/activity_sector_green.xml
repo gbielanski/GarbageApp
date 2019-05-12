@@ -5,7 +5,8 @@
         android:id="@+id/main_content_sector_green"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:background="@android:color/white">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar"
@@ -24,7 +25,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_margin="@dimen/medium_margin"
                     android:layout_toStartOf="@id/notification_switch"
-                    android:text="@string/sector_1"
+                    android:text="@string/sector_3"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
                 <Switch
@@ -34,7 +35,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:layout_margin="@dimen/medium_margin"
-                    android:text="@string/remind" />
+                    android:text="@string/remind"
+                    android:visibility="invisible"/>
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>
 

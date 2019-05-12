@@ -13,17 +13,17 @@ import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.data.database.SectorTerm;
 
 import static pl.example.android.garbageapp.data.database.TermType.MIXED;
-import static pl.example.android.garbageapp.data.database.TermType.SEGREGATED;
+import static pl.example.android.garbageapp.data.database.TermType.PLASTIC;
 
 public class SectorTermsUtil {
     private static final String LOG_TAG = SectorTermsUtil.class.getSimpleName();
 
     public static List<SectorTerm> getFakeSectorTermsData() {
         ArrayList<SectorTerm> sectorTermsList = new ArrayList<>();
-        sectorTermsList.add(new SectorTerm("2018-11-03", MIXED, SectorColor.GREEN));
-        sectorTermsList.add(new SectorTerm("2018-11-06", SEGREGATED, SectorColor.GREEN));
-        sectorTermsList.add(new SectorTerm("2018-11-17", MIXED, SectorColor.GREEN));
-        sectorTermsList.add(new SectorTerm("2018-12-01", MIXED, SectorColor.GREEN));
+        sectorTermsList.add(new SectorTerm("2018-11-03", MIXED, SectorColor.PINK));
+        sectorTermsList.add(new SectorTerm("2018-11-06", PLASTIC, SectorColor.PINK));
+        sectorTermsList.add(new SectorTerm("2018-11-17", MIXED, SectorColor.PINK));
+        sectorTermsList.add(new SectorTerm("2018-12-01", MIXED, SectorColor.PINK));
         return sectorTermsList;
     }
 

@@ -1,24 +1,24 @@
 package pl.example.android.garbageapp.ui;
 
 import android.databinding.DataBindingUtil;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import java.util.List;
 
 import pl.example.android.garbageapp.R;
-import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.database.SectorColor;
-import pl.example.android.garbageapp.databinding.ActivitySectorGreenBinding;
+import pl.example.android.garbageapp.data.database.SectorTerm;
+import pl.example.android.garbageapp.databinding.ActivitySectorPinkBinding;
 
 import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
-public class ActivitySectorGreen extends BaseActivitySector {
+public class ActivitySectorPink extends BaseActivitySector {
 
-    private ActivitySectorGreenBinding binding;
+    private ActivitySectorPinkBinding binding;
     @Override
     protected FragmentActivity currentSector() {
         return this;
@@ -26,14 +26,14 @@ public class ActivitySectorGreen extends BaseActivitySector {
 
     @Override
     protected SectorColor sectorColor() {
-        return SectorColor.GREEN;
+        return SectorColor.PINK;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setSectorTermsAdapter(new SectorTermsAdapter(R.color.sectorGreen));
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_green);
+        setSectorTermsAdapter(new SectorTermsAdapter(R.color.sectorPink));
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_pink);
         LinearLayoutManager verticalLinearLayoutManager = new LinearLayoutManager(this, VERTICAL, false);
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
         binding.rcSectorTerms.setAdapter(getSectorTermsAdapter());

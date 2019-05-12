@@ -23,9 +23,14 @@ import java.util.Calendar;
 import pl.example.android.garbageapp.R;
 import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.data.database.SectorTermNotificationIntentService;
-import pl.example.android.garbageapp.ui.ActivitySectorBlue;
+import pl.example.android.garbageapp.ui.ActivitySectorAmber;
+import pl.example.android.garbageapp.ui.ActivitySectorDeepOrange;
+import pl.example.android.garbageapp.ui.ActivitySectorDeepPurple;
 import pl.example.android.garbageapp.ui.ActivitySectorGreen;
-import pl.example.android.garbageapp.ui.ActivitySectorYellow;
+import pl.example.android.garbageapp.ui.ActivitySectorIndigo;
+import pl.example.android.garbageapp.ui.ActivitySectorOrange;
+import pl.example.android.garbageapp.ui.ActivitySectorPink;
+import pl.example.android.garbageapp.ui.ActivitySectorPurple;
 import pl.example.android.garbageapp.ui.MainActivity;
 
 
@@ -68,8 +73,7 @@ public class NotificationUtils {
                         .setDefaults(Notification.DEFAULT_ALL)
                         .setAutoCancel(true);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
-                && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
         }
 
@@ -109,12 +113,22 @@ public class NotificationUtils {
 
     private static Class whichActivityToStart(int notificationSectorColor) {
         switch (SectorColor.valueOf(notificationSectorColor)) {
+            case PINK:
+                return ActivitySectorPink.class;
+            case DEEP_PURPLE:
+                return ActivitySectorDeepPurple.class;
             case GREEN:
                 return ActivitySectorGreen.class;
-            case BLUE:
-                return ActivitySectorBlue.class;
-            case YELLOW:
-                return ActivitySectorYellow.class;
+            case AMBER:
+                return ActivitySectorAmber.class;
+            case ORANGE:
+                return ActivitySectorOrange.class;
+            case DEEP_ORANGE:
+                return ActivitySectorDeepOrange.class;
+            case PURPLE:
+                return ActivitySectorPurple.class;
+            case INDIGO:
+                return ActivitySectorIndigo.class;
             default:
                 return MainActivity.class;
         }

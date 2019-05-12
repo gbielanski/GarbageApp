@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/main_content_sector_blue"
+        android:id="@+id/main_content_sector_purple"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -11,22 +11,21 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
+            android:layout_height="@dimen/appbar_size"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
-                    android:layout_marginEnd="@dimen/medium_margin"
-                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_margin="@dimen/medium_margin"
                     android:layout_toStartOf="@id/notification_switch"
-                    android:text="@string/sector_3"
+                    android:text="@string/sector_7"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
                 <Switch
@@ -34,8 +33,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/medium_margin"
-                    android:text="@string/remind" />
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="@dimen/medium_margin"
+                    android:text="@string/remind"
+                    android:visibility="invisible"/>
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>
 
@@ -47,12 +48,14 @@
                 android:id="@+id/rc_sector_terms"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="?android:attr/actionBarSize"/>
+                android:layout_marginTop="@dimen/appbar_size"/>
             <ProgressBar
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_centerInParent="true"
                 android:id="@+id/progress_bar"/>
         </RelativeLayout>
+
+
     </android.support.design.widget.CoordinatorLayout>
 </layout>

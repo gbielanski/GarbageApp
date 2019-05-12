@@ -1,32 +1,72 @@
 package pl.example.android.garbageapp.data.database;
 
+import android.support.annotation.NonNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
-
 public enum SectorColor {
     UNSET(0) {
+        @NonNull
         @Override
         public String toString() {
-            return "SEKTOR NIEZDEFINIOWANY";
+            return "REJON NIEZDEFINIOWANY";
         }
     },
-    GREEN(1) {
+    PINK(1) {
+        @NonNull
         @Override
         public String toString() {
-            return "SEKTOR I ZIELONY";
+            return "REJON 1 RÓŻOWY";
         }
     },
-    BLUE(2) {
+    DEEP_PURPLE(2) {
+        @NonNull
         @Override
         public String toString() {
-            return "SEKTOR II NIEBIESKI";
+            return "REJON 2 CIEMNO FIOLETOWY";
         }
     },
-    YELLOW(3) {
+    GREEN(3) {
+        @NonNull
         @Override
         public String toString() {
-            return "SEKTOR III ŻÓŁTY";
+            return "REJON 3 ZIELONY";
+        }
+    },
+    AMBER(4) {
+        @NonNull
+        @Override
+        public String toString() {
+            return "REJON 4 AMBER";
+        }
+    },
+    ORANGE(5) {
+        @NonNull
+        @Override
+        public String toString() {
+            return "REJON 5 ORANGE";
+        }
+    },
+    DEEP_ORANGE(6) {
+        @NonNull
+        @Override
+        public String toString() {
+            return "REJON 6 DEEP ORANGE";
+        }
+    },
+    PURPLE(7) {
+        @NonNull
+        @Override
+        public String toString() {
+            return "REJON 7 PURPLE";
+        }
+    },
+    INDIGO(8) {
+        @NonNull
+        @Override
+        public String toString() {
+            return "REJON 8 INDIGO";
         }
     };
 
@@ -54,9 +94,14 @@ public enum SectorColor {
 
     public static SectorColor toSectorColor(String color) {
         switch (color) {
-            case "blue" : return BLUE;
+            case "pink" : return PINK;
+            case "deep_purple" : return DEEP_PURPLE;
             case "green" : return GREEN;
-            case "yellow" : return YELLOW;
+            case "amber" : return AMBER;
+            case "orange" : return ORANGE;
+            case "deep_orange" : return DEEP_ORANGE;
+            case "purple" : return PURPLE;
+            case "indigo" : return INDIGO;
             default: return UNSET;
         }
     }

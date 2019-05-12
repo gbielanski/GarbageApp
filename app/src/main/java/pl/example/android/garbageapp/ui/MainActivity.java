@@ -2,9 +2,13 @@ package pl.example.android.garbageapp.ui;
 
 import android.animation.Animator;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.Toast;
@@ -16,11 +20,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_eight_sectors);
     }
 
-    public void showToast(View view) {
-        Toast.makeText(this, "Przypomnienie ustawione dla STREFY III", Toast.LENGTH_LONG).show();
+    public void onClickSectorPinkDetails(View view) {
+        animateCircularReveal(view);
+        startSectorPinkDetails();
+    }
+
+    public void onClickSectorDeepPurpleDetails(View view) {
+        animateCircularReveal(view);
+        startSectorDeepPurpleDetails();
     }
 
     public void onClickSectorGreenDetails(View view) {
@@ -28,14 +38,29 @@ public class MainActivity extends AppCompatActivity {
         startSectorGreenDetails();
     }
 
-    public void onClickSectorBlueDetails(View view) {
+    public void onClickSectorAmberDetails(View view) {
         animateCircularReveal(view);
-        startSectorBlueDetails();
+        startSectorAmberDetails();
     }
 
-    public void onClickSectorYellowDetails(View view) {
+    public void onClickSectorOrangeDetails(View view) {
         animateCircularReveal(view);
-        startSectorYellowDetails();
+        startSectorOrangeDetails();
+    }
+
+    public void onClickSectorDeepOrangeDetails(View view) {
+        animateCircularReveal(view);
+        startSectorDeepOrangeDetails();
+    }
+
+    public void onClickSectorPurpleDetails(View view) {
+        animateCircularReveal(view);
+        startSectorPurpleDetails();
+    }
+
+    public void onClickSectorIndigoDetails(View view) {
+        animateCircularReveal(view);
+        startSectorIndigoDetails();
     }
 
     private void animateCircularReveal(View view) {
@@ -47,21 +72,57 @@ public class MainActivity extends AppCompatActivity {
         anim.start();
     }
 
+    private void startSectorPinkDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorPink.class);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+
+    private void startSectorDeepPurpleDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorDeepPurple.class);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+
     private void startSectorGreenDetails() {
         Intent intent = new Intent(MainActivity.this, ActivitySectorGreen.class);
         Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
         startActivity(intent, bundle);
     }
 
-    private void startSectorBlueDetails() {
-        Intent intent = new Intent(MainActivity.this, ActivitySectorBlue.class);
+    private void startSectorAmberDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorAmber.class);
         Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
         startActivity(intent, bundle);
     }
 
-    private void startSectorYellowDetails() {
-        Intent intent = new Intent(MainActivity.this, ActivitySectorYellow.class);
+    private void startSectorOrangeDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorOrange.class);
         Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
         startActivity(intent, bundle);
+    }
+
+    private void startSectorDeepOrangeDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorDeepOrange.class);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+
+    private void startSectorPurpleDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorPurple.class);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+
+    private void startSectorIndigoDetails() {
+        Intent intent = new Intent(MainActivity.this, ActivitySectorIndigo.class);
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle();
+        startActivity(intent, bundle);
+    }
+
+    public void onClickPolicy(View view) {
+        String URL = "https://gbielanski.wixsite.com/wystaw-smieci";
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+        startActivity(myIntent);
     }
 }

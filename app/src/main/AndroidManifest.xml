@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="pl.example.android.garbageapp">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -10,7 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +22,13 @@
         </activity>
 
         <activity android:name=".ui.ActivitySectorGreen" />
-        <activity android:name=".ui.ActivitySectorBlue" />
-        <activity android:name=".ui.ActivitySectorYellow" />
+        <activity android:name=".ui.ActivitySectorPink" />
+        <activity android:name=".ui.ActivitySectorDeepPurple" />
+        <activity android:name=".ui.ActivitySectorAmber" />
+        <activity android:name=".ui.ActivitySectorOrange" />
+        <activity android:name=".ui.ActivitySectorDeepOrange" />
+        <activity android:name=".ui.ActivitySectorPurple" />
+        <activity android:name=".ui.ActivitySectorIndigo" />
         <!--This is required for immediate syncs -->
         <service
             android:name=".data.network.SectorTermSyncIntentService"

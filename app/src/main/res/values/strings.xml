@@ -1,11 +1,16 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Wystaw Śmieci</string>
-    <string name="main_appbar_desc">HARMONOGRAM ODBIORU ODPADÓW W ZIELONCE</string>
-    <string name="sector_1">SEKTOR I</string>
+    <string name="main_header_desc">HARMONOGRAM ODBIORU ODPADÓW W ZIELONCE</string>
+    <string name="sector_1">REJON 1</string>
+    <string name="sector_2">REJON 2</string>
+    <string name="sector_3">REJON 3</string>
+    <string name="sector_4">REJON 4</string>
+    <string name="sector_5">REjON 5</string>
+    <string name="sector_6">REJON 6</string>
+    <string name="sector_7">REJON 7</string>
+    <string name="sector_8">REJON 8</string>
     <string name="sector_1_desc">ZIELONKA PÓŁNOCNA OD TORÓW KOLEJOWYCH W KIERUNKU MAREK</string>
-    <string name="sector_2">SEKTOR II</string>
     <string name="sector_2_desc">ZIELONKA CENTRALNA OD TORÓW W KIERUNKU UL. WYSZYŃSKIEGO ORAZ ULICE PONIATOWSKIEGO, POŁUDNIOWA ORAZ WĄSKA</string>
-    <string name="sector_3">SEKTOR III</string>
     <string name="sector_3_desc">ZIELONKA POŁUDNIOWA OD ULICY WYSZYŃSKIEGO (WŁĄCZNIE) W KIERUNKU REMBERTOWA</string>
     <string name="remind">PRZYPOMINAJ</string>
     <string name="setup_notification">Przypomnienie ustawione dla <xliff:g id="sector" example="SEKTOR I ZIELONY">%s</xliff:g></string>
@@ -14,6 +19,9 @@
     <string name="main_notification_channel_name" translatable="false">Primary</string>
     <string name="notification_message_title">Informacja</string>
     <string name="TYPE_MIXED_DESC">zmieszane</string>
-    <string name="TYPE_SEG_DESC">segregowane</string>
+    <string name="TYPE_PLASTIC_DESC">plastiki</string>
+    <string name="TYPE_PAPER_DESC">papiery</string>
     <string name="TYPE_BIO_DESC">biodegradowalne</string>
+    <string name="policy"><u>Polityka prywatności</u></string>
+    <string name="TYPE_GLASS_DESC">szkła</string>
 </resources>

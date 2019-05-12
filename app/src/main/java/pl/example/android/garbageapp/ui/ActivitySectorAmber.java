@@ -4,22 +4,21 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.List;
 
 import pl.example.android.garbageapp.R;
-import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.database.SectorColor;
-import pl.example.android.garbageapp.databinding.ActivitySectorBlueBinding;
+import pl.example.android.garbageapp.data.database.SectorTerm;
+import pl.example.android.garbageapp.databinding.ActivitySectorAmberBinding;
+import pl.example.android.garbageapp.databinding.ActivitySectorPinkBinding;
 
 import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
 
-public class ActivitySectorBlue extends BaseActivitySector {
+public class ActivitySectorAmber extends BaseActivitySector {
 
-    private ActivitySectorBlueBinding binding;
-
+    private ActivitySectorAmberBinding binding;
     @Override
     protected FragmentActivity currentSector() {
         return this;
@@ -27,14 +26,14 @@ public class ActivitySectorBlue extends BaseActivitySector {
 
     @Override
     protected SectorColor sectorColor() {
-        return SectorColor.BLUE;
+        return SectorColor.AMBER;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setSectorTermsAdapter(new SectorTermsAdapter(R.color.colorSectorBluePrimary));
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_blue);
+        setSectorTermsAdapter(new SectorTermsAdapter(R.color.sectorAmber));
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sector_amber);
         LinearLayoutManager verticalLinearLayoutManager = new LinearLayoutManager(this, VERTICAL, false);
         binding.rcSectorTerms.setLayoutManager(verticalLinearLayoutManager);
         binding.rcSectorTerms.setAdapter(getSectorTermsAdapter());
@@ -43,6 +42,7 @@ public class ActivitySectorBlue extends BaseActivitySector {
             binding.notificationSwitch.setChecked(true);
 
         binding.notificationSwitch.setOnCheckedChangeListener(this::markForNotification);
+
     }
 
     @Override

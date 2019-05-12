@@ -10,5 +10,11 @@
         <item name="android:windowEnterTransition">@android:transition/slide_right</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
+    <style name="Sector">
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Small</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:elevation">4dp</item>
+    </style>
 
 </resources>
