@@ -1,6 +1,6 @@
 package pl.example.android.garbageapp.data;
 
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 import android.util.Log;
 
 import java.util.Date;

@@ -9,7 +9,7 @@
         <variable
             name="sectorColor"
             type="int"/>
-        <import type="android.support.v4.content.ContextCompat" />
+        <import type="androidx.core.content.ContextCompat" />
     </data>
 
     <LinearLayout

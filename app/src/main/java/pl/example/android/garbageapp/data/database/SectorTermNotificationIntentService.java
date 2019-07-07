@@ -2,7 +2,7 @@ package pl.example.android.garbageapp.data.database;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import pl.example.android.garbageapp.utils.InjectorUtils;

@@ -1,8 +1,8 @@
 package pl.example.android.garbageapp.ui;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import pl.example.android.garbageapp.data.SectorTermRepository;
 import pl.example.android.garbageapp.data.database.SectorColor;

@@ -1,8 +1,8 @@
 package pl.example.android.garbageapp.ui;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -13,7 +13,6 @@ import pl.example.android.garbageapp.R;
 import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.databinding.BigRcListElementBinding;
 import pl.example.android.garbageapp.databinding.SmallRcListElementBinding;
-import pl.example.android.garbageapp.utilities.SectorTermsUtil;
 
 class SectorTermsAdapter extends RecyclerView.Adapter<SectorTermsAdapter.TermViewHolder> {
 

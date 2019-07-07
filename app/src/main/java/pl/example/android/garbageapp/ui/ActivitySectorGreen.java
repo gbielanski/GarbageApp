@@ -1,10 +1,10 @@
 package pl.example.android.garbageapp.ui;
 
-import android.databinding.DataBindingUtil;
-import android.support.v4.app.FragmentActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.view.View;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import pl.example.android.garbageapp.data.database.SectorTerm;
 import pl.example.android.garbageapp.data.database.SectorColor;
 import pl.example.android.garbageapp.databinding.ActivitySectorGreenBinding;
 
-import static android.support.v7.widget.LinearLayoutManager.VERTICAL;
+import static androidx.recyclerview.widget.LinearLayoutManager.VERTICAL;
 
 public class ActivitySectorGreen extends BaseActivitySector {
 
